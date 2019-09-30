@@ -1,0 +1,14 @@
+@import './fonts';
+// @import '~bootstrap/scss/mixins';
+
+/*
+* Default Font Size
+* NOTE: please calc the new font form the root font EX: ( 24 / 16 ) => 1.125rem
+*/
+html {
+  font-family: 'MontserratRegular', sans-serif;
+  font-size: 16px;
+  // @include media-breakpoint-down(xl) { font-size: 16px; }
+  // @include media-breakpoint-down(md) { font-size: 14px; }
+  // @include media-breakpoint-down(sm) { font-size: 12px; }
+}
