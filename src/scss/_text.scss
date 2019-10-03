@@ -1,59 +1,70 @@
-@import './fonts';
-@import './variables';
+@import "./fonts";
+@import "./variables";
 
 /*
 * Default Font Size
 * NOTE: please calc the new font form the root font EX: ( 24 / 14 ) => 1.714rem
 */
 html {
-  font-family: 'MontserratRegular', sans-serif;
+  font-family: "MontserratRegular", sans-serif;
   font-size: 14px;
-  @include media-breakpoint-down(xl) { font-size: 14px; }
-  @include media-breakpoint-down(md) { font-size: 12px; }
-  @include media-breakpoint-down(sm) { font-size: 10px; }
+  @include media-breakpoint-down(xl) {
+    font-size: 14px;
+  }
+  @include media-breakpoint-down(md) {
+    font-size: 12px;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 10px;
+  }
 }
 
-h1{
+h1 {
   font-size: $large-bold;
   font-family: $bold;
 }
 
-.h1-light{
+.h1-light {
   font-size: $large-light;
   font-family: $light-font;
 }
 
-h2{
+h2 {
   font-size: $medium-bold;
   font-family: $bold;
 }
 
-.h2-light{
+.h2-light {
   font-size: $medium-light;
   font-family: $light-font;
 }
 
-h3{
+h3 {
   font-size: $regular-size;
   font-family: $bold;
 }
 
-h4{
+h4 {
   font-size: $medium-light;
   font-family: $bold;
 }
 
-p{
+p {
   font-size: $medium-bold;
   font-family: $medium;
 }
 
-a{
+a {
   font-size: $medium-light;
   font-family: $light-font;
 }
 
-button{
+button {
   font-size: $button-text;
   font-family: $regular;
+}
+
+.icon {
+  color: $light;
+  margin-left: 10px;
 }

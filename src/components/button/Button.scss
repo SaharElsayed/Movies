@@ -1,0 +1,8 @@
+@import "../../scss/mixins";
+
+.button {
+  cursor: pointer;
+  border-radius: 3.57rem;
+  @include boxShadow(0 1rem 5rem rgba(0, 0, 0, 0.2));
+  padding: 0.7rem 1.92rem;
+}
