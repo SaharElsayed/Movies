@@ -1,0 +1,28 @@
+@import "../../scss/mixins";
+@import '../../scss/variables';
+
+.list{
+  width: 40vw;
+  list-style: none;
+  &__item{
+    margin-bottom: 0.28rem;
+    &.active .btn{
+      color: $secondary;
+      border: 1px solid $secondary;
+      background-color: transparent;
+    }
+  }
+  &__btn.button{
+    border-color: transparent;
+    color:$light;
+    margin-bottom: 0.28rem;
+    background-color: transparent;
+    @include boxShadow(none);
+    @include transitions(none);
+    &:hover{
+      transform: none; 
+      color: $light;
+      border: 1px solid $light;
+    }
+  }
+}

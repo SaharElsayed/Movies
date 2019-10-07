@@ -1,8 +1,28 @@
 @import "../../scss/mixins";
+@import "../../scss/variables";
 
 .button {
   cursor: pointer;
   border-radius: 3.57rem;
-  @include boxShadow(0 1rem 5rem rgba(0, 0, 0, 0.2));
   padding: 0.7rem 1.92rem;
+  @include boxShadow(0 1rem 5rem rgba(0, 0, 0, 0.2));
+  @include transitions(all 600ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s);
+  &.btn-primary{
+    &:hover{
+      color: $primary;
+      background-color: transparent;
+      border: 1px solid $primary;
+    }
+  }
+  &.btn-outline-primary{
+    background-color: transparent;
+    &:hover{
+      background-color: $primary;
+      color: $text;
+    }
+  }
+  &:hover{
+    transform: translateY(-3px);
+    @include boxShadow(none);
+  }  
 }
