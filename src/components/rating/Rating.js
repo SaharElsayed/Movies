@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons'
 
-const MovieRating = ({ initialRating, size }) => {
+const Rating = ({ initialRating, size }) => {
   return (
     <Stars
       className="star"
@@ -16,4 +16,4 @@ const MovieRating = ({ initialRating, size }) => {
   )
 }
 
-export default MovieRating;
+export default Rating;
