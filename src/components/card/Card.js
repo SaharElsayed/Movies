@@ -5,9 +5,11 @@ import './Card.scss';
 const Rating = React.lazy(() => import('../rating/Rating'))
 
 const Card = (props) => {
+  console.log(props);
+
   return (
     <React.Fragment>
-      <ItemCard className='movieCard text-center'>
+      <ItemCard className='movieCard text-center col-md-3' key={props.id}>
         <ItemCard.Img className='movieCard__img' variant="top" src={props.img} />
         <ItemCard.Body className="movieCard__body">
           <h2 className="movieCard__title h2-light">{props.title}</h2>

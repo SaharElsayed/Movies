@@ -1,54 +1,47 @@
 import axios from 'axios';
 
-const Api = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com'
-})
+const axiosInstance = axios.create({
+  baseURL: 'https://api.themoviedb.org/3',
+  params: {
+    'api_key': '57aa01b7896ca3d312b43b4e9ade2b38'
+  }
+});
+
 
 const isHandlerEnabled = (config = {}) => {
-  console.log(config.hasOwnProperty('handlerEnabled'));
-  console.log(!config['handlerEnabled']);
-
-  return config.hasOwnProperty('handlerEnabled') && config['handlerEnabled'] ? false : true;
-}
+  return config.hasOwnProperty('handlerEnabled') && !config.handlerEnabled ? false : true
+};
 
 const requestHandler = (request) => {
-  console.log(request);
 
   if (isHandlerEnabled(request)) {
-    console.log('if block');
-  }
-  else {
-    console.log('else block');
+    // Modify request here
+    // request.headers['X-CodePen'] = 'https://codepen.io/teroauralinna/full/vPvKWe'
   }
   return request
-}
+};
+
+axiosInstance.interceptors.request.use(
+  request => requestHandler(request)
+);
 
 const errorHandler = (error) => {
-
   if (isHandlerEnabled(error.config)) {
     // Handle errors
-    // console.log(error);
-
   }
   return Promise.reject({ ...error })
-}
+};
 
 const successHandler = (response) => {
   if (isHandlerEnabled(response.config)) {
     // Handle responses
-    // console.log(response);
-
   }
   return response
-}
+};
 
-Api.interceptors.request.use(
-  request => requestHandler(request)
-);
-
-Api.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   response => successHandler(response),
   error => errorHandler(error)
 );
 
-export default Api;
+export default axiosInstance;

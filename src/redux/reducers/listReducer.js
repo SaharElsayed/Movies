@@ -1,12 +1,11 @@
-export default (state = {}, action) => {
-  console.log(action);
+import { FETCH_LIST } from '../actions/types';
 
+export default (state = {}, action) => {
   switch (action.type) {
-    case 'FETCH_LIST': {
-      return action.payload;
+    case FETCH_LIST: {
+      return { list: action.payload }
     }
-    default: {
+    default:
       return state;
-    }
   }
 }
