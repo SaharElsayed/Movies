@@ -14,7 +14,7 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <h1>Popular</h1>
-        <Row>
+        <Row className="card-wrapper">
           {
             list &&
             list.results.map((item, i) => {

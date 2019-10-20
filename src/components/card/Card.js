@@ -9,7 +9,7 @@ const Card = (props) => {
 
   return (
     <React.Fragment>
-      <ItemCard className='movieCard text-center col-md-3' key={props.id}>
+      <ItemCard className='movieCard text-center' key={props.id}>
         <ItemCard.Img className='movieCard__img' variant="top" src={props.img} />
         <ItemCard.Body className="movieCard__body">
           <h2 className="movieCard__title h2-light">{props.title}</h2>
