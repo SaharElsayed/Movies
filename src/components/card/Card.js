@@ -5,7 +5,7 @@ import './Card.scss';
 const Rating = React.lazy(() => import('../rating/Rating'))
 
 const Card = (props) => {
-  console.log(props);
+  // console.log(props);
 
   return (
     <React.Fragment>

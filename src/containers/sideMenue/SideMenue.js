@@ -1,44 +1,45 @@
 import React from 'react';
 // import { slide as Menu } from 'react-burger-menu';
 import Logo from './../../components/logo/Logo';
-import { faHeart, faChartLine, faTable } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faChartLine, faTable } from '@fortawesome/free-solid-svg-icons';
 import List from '../../components/list/List';
 import './SideMenue.scss';
 import { connect } from 'react-redux';
-import { fetchListRequest } from '../../redux/actions/index';
+import { fetchListRequest, fetchGenresRequest, fetchActiveTab } from '../../redux/actions/index';
 
 class SideMenue extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       links: [
-        { id: 1, name: "Popular", api: 'popular', className: "list__item", icon: faHeart },
-        { id: 2, name: "Top rated", api: 'top_rated', className: "list__item", icon: faChartLine },
-        { id: 3, name: "Upcoming", api: 'upcoming', className: "list__item", icon: faTable }
-      ],
-      activeLink: 1
+        { id: 1, name: "Popular", api: 'popular', icon: faHeart },
+        { id: 2, name: "Top rated", api: 'top_rated', icon: faChartLine },
+        { id: 3, name: "Upcoming", api: 'upcoming', icon: faTable }
+      ]
     }
   };
 
   componentDidMount() {
-
+    this.props.fetchGenresRequest();
   }
 
-  handleClick = (id, category) => {
+  handleClick = (id, name, category) => {
     // console.log(category);
 
-    this.setState({ activeLink: id });
+    this.props.fetchActiveTab({ activeLink: id, pageTitle: name });
     this.props.fetchListRequest(category);
   };
 
   render() {
-    const { links, activeLink } = this.state;
+    const { links } = this.state;
+    const { genres, activeTab: { activeLink } } = this.props;
+
     return (
       <React.Fragment>
         <div className='side-menu'>
           <Logo />
           <List title='discover' links={links} handleClick={this.handleClick} activeLink={activeLink} />
-          {/* <List title='geners' links={links} handleClick={this.handleClick} activeLink={activeLink} /> */}
+          <List title='geners' links={genres} handleClick={this.handleClick} activeLink={activeLink} />
 
         </div>
 
@@ -53,8 +54,7 @@ class SideMenue extends React.Component {
 }
 
 const mapStateToprops = state => {
-  // console.log(state);
-  return { ...state.list };
+  return { ...state };
 }
 
-export default connect(mapStateToprops, { fetchListRequest })(SideMenue);
+export default connect(mapStateToprops, { fetchListRequest, fetchGenresRequest, fetchActiveTab })(SideMenue);
