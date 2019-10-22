@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { requestHandler, successHandler, errorHandler } from './interceptor';
 
 const axiosInstance = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
@@ -7,37 +8,9 @@ const axiosInstance = axios.create({
   }
 });
 
-
-const isHandlerEnabled = (config = {}) => {
-  return config.hasOwnProperty('handlerEnabled') && !config.handlerEnabled ? false : true
-};
-
-const requestHandler = (request) => {
-
-  if (isHandlerEnabled(request)) {
-    // Modify request here
-    // request.headers['X-CodePen'] = 'https://codepen.io/teroauralinna/full/vPvKWe'
-  }
-  return request
-};
-
 axiosInstance.interceptors.request.use(
   request => requestHandler(request)
 );
-
-const errorHandler = (error) => {
-  if (isHandlerEnabled(error.config)) {
-    // Handle errors
-  }
-  return Promise.reject({ ...error })
-};
-
-const successHandler = (response) => {
-  if (isHandlerEnabled(response.config)) {
-    // Handle responses
-  }
-  return response
-};
 
 axiosInstance.interceptors.response.use(
   response => successHandler(response),

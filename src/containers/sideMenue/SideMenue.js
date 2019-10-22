@@ -1,11 +1,11 @@
 import React from 'react';
 // import { slide as Menu } from 'react-burger-menu';
+import { connect } from 'react-redux';
 import Logo from './../../components/logo/Logo';
 import { faHeart, faChartLine, faTable } from '@fortawesome/free-solid-svg-icons';
 import List from '../../components/list/List';
 import './SideMenue.scss';
-import { connect } from 'react-redux';
-import { fetchListRequest, fetchGenresRequest, fetchActiveTab } from '../../redux/actions/index';
+import { fetchDiscoverMoviesRequest, fetchSideListRequest, fetchActiveTab } from '../../redux/actions/index';
 
 class SideMenue extends React.Component {
   constructor(props) {
@@ -20,26 +20,28 @@ class SideMenue extends React.Component {
   };
 
   componentDidMount() {
-    this.props.fetchGenresRequest();
+    this.props.fetchSideListRequest();
   }
 
-  handleClick = (id, name, category) => {
-    // console.log(category);
+  handleClick = (id, name, api) => {
+    console.log(id);
+    console.log(name);
+    console.log(api);
 
     this.props.fetchActiveTab({ activeLink: id, pageTitle: name });
-    this.props.fetchListRequest(category);
+    this.props.fetchDiscoverMoviesRequest(id, api);
   };
 
   render() {
     const { links } = this.state;
-    const { genres, activeTab: { activeLink } } = this.props;
+    const { sideMenue, activeTab: { activeLink } } = this.props;
 
     return (
       <React.Fragment>
         <div className='side-menu'>
           <Logo />
           <List title='discover' links={links} handleClick={this.handleClick} activeLink={activeLink} />
-          <List title='geners' links={genres} handleClick={this.handleClick} activeLink={activeLink} />
+          <List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={activeLink} />
 
         </div>
 
@@ -57,4 +59,4 @@ const mapStateToprops = state => {
   return { ...state };
 }
 
-export default connect(mapStateToprops, { fetchListRequest, fetchGenresRequest, fetchActiveTab })(SideMenue);
+export default connect(mapStateToprops, { fetchDiscoverMoviesRequest, fetchSideListRequest, fetchActiveTab })(SideMenue);

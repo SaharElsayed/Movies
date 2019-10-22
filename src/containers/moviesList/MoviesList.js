@@ -1,13 +1,14 @@
 import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
-import { fetchListRequest } from '../../redux/actions/index';
+import { fetchDiscoverMoviesRequest } from '../../redux/actions/index';
 import './MoviesList.scss';
 const Card = React.lazy(() => import('../../components/card/Card'));
 
 class MoviesList extends React.Component {
   componentDidMount() {
-    this.props.fetchListRequest('popular');
+    const { activeTab: { activeLink, pageTitle } } = this.props;
+    this.props.fetchDiscoverMoviesRequest(`${activeLink}`, 'popular');
   }
 
   render() {
@@ -45,4 +46,4 @@ const mapStateToprops = state => {
   return { ...state };
 }
 
-export default connect(mapStateToprops, { fetchListRequest })(MoviesList);
+export default connect(mapStateToprops, { fetchDiscoverMoviesRequest })(MoviesList);

@@ -1,8 +1,15 @@
-import Api from './Api';
+import axiosInstance from './Api';
 
+const fetchSideList = async () => await axiosInstance.get('/genre/movie/list');
 
-const fetchList = async category => await Api.get(`/movie/${category}`);
-const fetchGenres = async () => await Api.get('/genre/movie/list');
+const fetchDiscoverMovies = async api => await axiosInstance.get(`/movie/${api}`);
 
+const fetchGenresMovies = async params => {
+  return await axiosInstance.get('/discover/movie', {
+    params: {
+      ...params
+    }
+  })
+};
 
-export default { fetchList, fetchGenres };
+export default { fetchSideList, fetchDiscoverMovies, fetchGenresMovies };
