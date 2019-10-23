@@ -12,21 +12,21 @@ function* getSideList() {
   }
 }
 
-function* getMovies({ id, api }) {
+function* getMovies({ id, api, params }) {
+  console.log(api);
+
   try {
     if (api) {
-      const response = yield call(movies.fetchDiscoverMovies, api);
+      console.log(api);
+
+      const response = yield call(movies.fetchDiscoverMovies, api, params);
       const payload = response.data;
       yield put({ type: types.FETCH_DISCOVER_MOVIES, payload: payload });
-
     } else {
-      console.log('genres');
-      const response = yield call(movies.fetchGenresMovies, { 'with_genres': id });
+      const response = yield call(movies.fetchGenresMovies, { ...params, 'with_genres': id });
       const payload = response.data;
-      console.log(payload);
       yield put({ type: types.FETCH_GENRES_MOVIES, payload: payload });
     }
-
   } catch (error) {
     console.log(error);
   }

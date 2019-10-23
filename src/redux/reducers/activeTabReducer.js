@@ -1,9 +1,6 @@
 import * as types from '../actions/types';
-
-const intialState = { activeLink: 1, pageTitle: 'Popular' }
+const intialState = { id: 1, title: 'popular' }
 export default (state = intialState, action) => {
-  // console.log(action);
-
   switch (action.type) {
     case types.FETCH_ACTIVE_TAB:
       return action.payload;

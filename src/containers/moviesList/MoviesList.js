@@ -1,21 +1,17 @@
 import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
-import { fetchDiscoverMoviesRequest } from '../../redux/actions/index';
 import './MoviesList.scss';
+
 const Card = React.lazy(() => import('../../components/card/Card'));
 
 class MoviesList extends React.Component {
-  componentDidMount() {
-    const { activeTab: { activeLink, pageTitle } } = this.props;
-    this.props.fetchDiscoverMoviesRequest(`${activeLink}`, 'popular');
-  }
 
   render() {
-    const { list: { results }, activeTab: { pageTitle } } = this.props;
+    const { list: { results }, activeTab: { title } } = this.props;
     return (
       <React.Fragment>
-        <h1 className="h1-light">{pageTitle.toUpperCase()}</h1>
+        <h1 className="h1-light">{title.toUpperCase()}</h1>
         <h2>MOVIES</h2>
         <Row className="card-wrapper">
           {
@@ -46,4 +42,4 @@ const mapStateToprops = state => {
   return { ...state };
 }
 
-export default connect(mapStateToprops, { fetchDiscoverMoviesRequest })(MoviesList);
+export default connect(mapStateToprops)(MoviesList);

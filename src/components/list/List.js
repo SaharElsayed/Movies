@@ -1,5 +1,5 @@
 import React from 'react';
-import PrimaryButton from '../button/Button';
+import Button from '../button/Button';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons';
 import './List.scss';
 
@@ -17,7 +17,7 @@ const List = ({ title, links, activeLink, handleClick }) => {
                 key={link.id}
                 onClick={() => handleClick(link.id, link.name, link.api)}
               >
-                <PrimaryButton
+                <Button
                   text={link.name}
                   className='btn-block list__btn'
                   icon={link.icon || faDotCircle}

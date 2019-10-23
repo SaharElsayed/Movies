@@ -24,24 +24,20 @@ class SideMenue extends React.Component {
   }
 
   handleClick = (id, name, api) => {
-    console.log(id);
-    console.log(name);
-    console.log(api);
-
-    this.props.fetchActiveTab({ activeLink: id, pageTitle: name });
+    this.props.fetchActiveTab({ id: id, title: name });
     this.props.fetchDiscoverMoviesRequest(id, api);
   };
 
   render() {
     const { links } = this.state;
-    const { sideMenue, activeTab: { activeLink } } = this.props;
+    const { sideMenue, activeTab: { id } } = this.props;
 
     return (
       <React.Fragment>
         <div className='side-menu'>
           <Logo />
-          <List title='discover' links={links} handleClick={this.handleClick} activeLink={activeLink} />
-          <List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={activeLink} />
+          <List title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
+          <List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
 
         </div>
 
