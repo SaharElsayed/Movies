@@ -1,0 +1,62 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.form-group {
+  .input-group > .form-control,
+  .input-group > .form-control-plaintext,
+  .input-group > .custom-select,
+  .input-group > .custom-file{
+    color: $text;
+  }
+  
+  .search-form {
+    padding: 0 1rem;
+    z-index: 1;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 19.7rem;
+    cursor: pointer;
+    background-color: $secondary;
+    border-radius: 3.57rem;
+    border: none;
+    @include transitions(all 300ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s);
+    @include boxShadow(0 4px 8px rgba(0, 0, 0, 0.2));
+
+    &__group.input-group {
+      padding-left: 0;
+    }
+
+    &__icon {
+      color: $text;
+      padding: 0.35rem;
+      background-color: transparent;
+      border-width: initial;
+      border-style: none;
+      border-color: initial;
+      border-image: initial;
+    }
+
+    &__input {
+      background-color: transparent;
+      width: 100%;
+      margin-left: 0rem;
+      padding-left: 0.5rem;
+      border-width: initial;
+      border-style: none;
+      border-color: initial;
+      border-image: initial;
+      @include transitions(all 300ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s);
+
+      &:focus {
+        background-color: $secondary;
+        @include boxShadow(none);
+        border-radius: 3.57rem;
+      }
+    }
+
+    ::placeholder {
+      color: $text;
+    }
+  }
+}

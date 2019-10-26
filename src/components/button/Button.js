@@ -1,22 +1,20 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button as PrimaryButton } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './Button.scss';
 
-const PrimaryButton = ({ text, icon, size, order, dir, className }) => {
+const Button = ({ text, icon, size, order, dir, className, action }) => {
 
   return (
-    <React.Fragment>
-      <Button className={`d-flex button ${className}`}>
-        <FontAwesomeIcon
-          icon={icon}
-          size={size}
-          className={`order-${order} m${dir}-2`}
-        />
-        {text}
-      </Button>
-    </React.Fragment>
+    <PrimaryButton className={`d-flex button ${className}`} onClick={action}>
+      <FontAwesomeIcon
+        icon={icon}
+        size={size}
+        className={`order-${order} m${dir}-2`}
+      />
+      {text}
+    </PrimaryButton>
   );
 };
 
-export default PrimaryButton;
+export default Button;

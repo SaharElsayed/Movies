@@ -1,28 +1,42 @@
 @import "../../scss/mixins";
 @import "../../scss/variables";
 
-.button {
+.btn.button {
   cursor: pointer;
   border-radius: 3.57rem;
-  padding: 0.7rem 1.92rem;
+  padding: 0.7rem 1rem;
   @include boxShadow(0 1rem 5rem rgba(0, 0, 0, 0.2));
   @include transitions(all 600ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s);
-  &.btn-primary{
-    &:hover{
+
+  &.btn-primary {
+
+    &:not(:disabled):not(.disabled):active,
+    &:focus {
+      color: $secondary;
+      border: 1px solid $secondary;
+      background-color: transparent;
+      @include boxShadow(none);
+    }
+
+    &:hover {
       color: $primary;
       background-color: transparent;
       border: 1px solid $primary;
     }
   }
-  &.btn-outline-primary{
+
+  &.btn-outline-primary {
     background-color: transparent;
-    &:hover{
+
+    &:hover {
       background-color: $primary;
       color: $text;
     }
   }
-  &:hover{
+
+  &:hover {
     transform: translateY(-3px);
     @include boxShadow(none);
-  }  
+  }
+
 }
