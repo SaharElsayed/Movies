@@ -18,7 +18,6 @@ function* getMovies({ id, api, params }) {
   try {
     if (api) {
       console.log(api);
-
       const response = yield call(movies.fetchDiscoverMovies, api, params);
       const payload = response.data;
       yield put({ type: types.FETCH_DISCOVER_MOVIES, payload: payload });
