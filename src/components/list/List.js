@@ -15,7 +15,7 @@ const List = ({ title, links, activeLink, handleClick }) => {
               <li
                 className={`list__item ${link.id === activeLink ? "active_item" : ""}`}
                 key={link.id}
-                onClick={() => handleClick(link.id, link.name, link.api)}
+                onClick={() => handleClick(link.api, link.id, link.name)}
               >
                 <Button
                   text={link.name}

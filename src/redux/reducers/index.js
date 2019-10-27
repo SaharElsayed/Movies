@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
-import listReducer from './listReducer';
-import sideListReducer from './sideListReducer';
-import activeTabReducer from './activeTabReducer';
+import ListReducer from './ListReducer';
+import SideListReducer from './SideListReducer';
+import ActiveTabReducer from './ActiveTabReducer';
+import SearchReducer from './SearchReducer';
+import SortReducer from './SortReducer';
 
 export default combineReducers({
-  list: listReducer,
-  sideMenue: sideListReducer,
-  activeTab: activeTabReducer
+  list: ListReducer,
+  sideMenue: SideListReducer,
+  activeTab: ActiveTabReducer,
+  searchKeyword: SearchReducer,
+  sort: SortReducer
 });

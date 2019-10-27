@@ -1,10 +1,9 @@
 @import "../../scss/mixins";
 @import "../../scss/variables";
 
-
-
 .movieCard {
-  border: none;  border-radius: 0.6rem;
+  border: none;  
+  border-radius: 0.6rem;
   background-color: transparent;
   @include transitions(all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s);
 
@@ -16,19 +15,6 @@
 
     .icon {
       color: $lighter;
-    }
-  }
-
-  &__img {
-    border-radius: 0.6rem;
-    background-color: transparent;
-    object-fit: cover;
-    @include boxShadow(0rem 2rem 5rem rgba(0, 0, 0, 0.2));
-
-    &:hover {
-      border-radius: 0.6rem 0.6rem 0 0;
-      @include boxShadow(none);
-      background-color: $light;
     }
   }
 

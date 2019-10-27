@@ -1,19 +1,22 @@
 import React, { Suspense } from 'react';
 import { Card as ItemCard } from 'react-bootstrap';
+import Loader from '../loader/Loader';
 import './Card.scss';
 
-const Rating = React.lazy(() => import('../rating/Rating'))
+const Rating = React.lazy(() => import('../rating/Rating'));
+const CardImage = React.lazy(() => import('../cardImage/CardImage'));
+
 
 const Card = (props) => {
-  // console.log(props);
-
   return (
     <React.Fragment>
       <ItemCard className='movieCard text-center' key={props.id}>
-        <ItemCard.Img className='movieCard__img' variant="top" src={props.img} />
+        <Suspense fallback={<Loader />}>
+          <CardImage src={props.img} />
+        </Suspense>
         <ItemCard.Body className="movieCard__body">
           <h2 className="movieCard__title h2-light">{props.title}</h2>
-          <Suspense fallback={<div>...Loading</div>}>
+          <Suspense>
             <Rating initialRating={props.initialRating} />
           </Suspense>
         </ItemCard.Body>

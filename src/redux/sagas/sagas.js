@@ -1,10 +1,10 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import * as types from '../actions/types';
-import movies from '../../apis/movies';
+import API from '../../apis/Movies';
 
 function* getSideList() {
   try {
-    const response = yield call(movies.fetchSideList);
+    const response = yield call(API.fetchSideList);
     const payload = response.data.genres;
     yield put({ type: types.FETCH_SIDE_LIST, payload: payload });
   } catch (error) {
@@ -12,29 +12,17 @@ function* getSideList() {
   }
 }
 
-function* getMovies({ id, api, params }) {
-  console.log(api);
+function* getMovies({ keyword, params }) {
 
   try {
-    if (api) {
-      console.log(api);
-      const response = yield call(movies.fetchDiscoverMovies, api, params);
-      const payload = response.data;
-      yield put({ type: types.FETCH_DISCOVER_MOVIES, payload: payload });
-    } else {
-      const response = yield call(movies.fetchGenresMovies, { ...params, 'with_genres': id });
-      const payload = response.data;
-      yield put({ type: types.FETCH_GENRES_MOVIES, payload: payload });
-    }
+    const response = yield call(API.fetchMovies, keyword, params);
+    yield put({ type: types.FETCH_MOVIES, payload: response.data });
   } catch (error) {
     console.log(error);
   }
 }
 
-
-
 export default function* watchSagas() {
   yield takeEvery(types.FETCH_SIDE_LIST_REQUEST, getSideList);
-  yield takeEvery(types.FETCH_DISCOVER_MOVIES_REQUEST, getMovies);
-
+  yield takeEvery(types.FETCH_MOVIES_REQUEST, getMovies);
 }

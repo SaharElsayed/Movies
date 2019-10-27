@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { requestHandler, successHandler, errorHandler } from './interceptor';
+import { requestHandler, successHandler, errorHandler } from './Interceptor';
 
 const axiosInstance = axios.create({
   baseURL: 'https://api.themoviedb.org/3',

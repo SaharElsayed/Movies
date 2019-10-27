@@ -3,9 +3,16 @@ import * as types from './types';
 // =========== side list ========
 export const fetchSideListRequest = () => ({ type: types.FETCH_SIDE_LIST_REQUEST });
 export const fetchSideList = payload => ({ type: types.FETCH_SIDE_LIST, payload });
-//=========== discover movies =====
-export const fetchDiscoverMoviesRequest = (id, api, params) => ({ type: types.FETCH_DISCOVER_MOVIES_REQUEST, id, api, params });
-export const fetchDiscoverMovies = payload => ({ type: types.FETCH_DISCOVER_MOVIES, payload });
-//========= genres movies ========
-export const fetchGenresMovies = payload => ({ type: types.FETCH_GENRES_MOVIES, payload });
+
+//=========== fetch movies =====
+export const fetchMoviesRequest = (keyword, params) => ({ type: types.FETCH_MOVIES_REQUEST, keyword, params });
+export const fetchMovies = payload => ({ type: types.FETCH_MOVIES, payload });
+
+//========= active tab ===========
 export const fetchActiveTab = payload => ({ type: types.FETCH_ACTIVE_TAB, payload });
+
+//========== search keyword =======
+export const setSearchKeyword = payload => ({ type: types.SET_SEARCH_KEYWORD, payload });
+
+//========= sort =========
+export const setSorting = payload => ({ type: types.SET_SORTING, payload });

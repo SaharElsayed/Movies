@@ -1,11 +1,11 @@
 import * as types from '../actions/types';
 
-const intialState = { id: 1, title: 'Popular', key: 'popular' };
+const intialState = { search: '' };
 
 export default (state = intialState, action) => {
   switch (action.type) {
-    case types.FETCH_ACTIVE_TAB:
-      return action.payload;
+    case types.SET_SEARCH_KEYWORD:
+      return { ...state, ...action.payload };
     default:
       return state;
   }

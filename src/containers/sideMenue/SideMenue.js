@@ -5,7 +5,7 @@ import Logo from './../../components/logo/Logo';
 import { faHeart, faChartLine, faTable } from '@fortawesome/free-solid-svg-icons';
 import List from '../../components/list/List';
 import './SideMenue.scss';
-import { fetchDiscoverMoviesRequest, fetchSideListRequest, fetchActiveTab } from '../../redux/actions/index';
+import { fetchMoviesRequest, fetchSideListRequest, fetchActiveTab, setSearchKeyword } from '../../redux/actions/index';
 
 class SideMenue extends React.Component {
   constructor(props) {
@@ -23,9 +23,15 @@ class SideMenue extends React.Component {
     this.props.fetchSideListRequest();
   }
 
-  handleClick = (id, name, api) => {
-    this.props.fetchActiveTab({ id: id, title: name });
-    this.props.fetchDiscoverMoviesRequest(id, api);
+  handleClick = (api, id, name) => {
+    const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest } = this.props;
+
+    setSearchKeyword({ search: "" });
+    fetchActiveTab({ id: id, title: name, key: api });
+    fetchMoviesRequest(api, {
+      page: 1,
+      with_genres: api ? '' : id
+    });
   };
 
   render() {
@@ -55,4 +61,4 @@ const mapStateToprops = state => {
   return { ...state };
 }
 
-export default connect(mapStateToprops, { fetchDiscoverMoviesRequest, fetchSideListRequest, fetchActiveTab })(SideMenue);
+export default connect(mapStateToprops, { fetchMoviesRequest, fetchSideListRequest, fetchActiveTab, setSearchKeyword })(SideMenue);

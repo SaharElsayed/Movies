@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Router } from 'react-router';
 import { Routes } from './Router';
@@ -17,10 +16,10 @@ class App extends React.Component {
           <Container fluid>
             <Search />
             <Row>
-              <Col lg='2' className="pr-md-0 pl-md-0">
+              <Col lg='2' md='2' className="pr-md-0 pl-md-0">
                 <SideMenue />
               </Col>
-              <Col lg='10' className="pt-md-60 pr-md-40 pb-md-60 pl-md-40">
+              <Col lg='10' md='10' className="pt-md-60 pr-md-40 pb-md-60 pl-md-40">
                 {Routes}
               </Col>
             </Row>

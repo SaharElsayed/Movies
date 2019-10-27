@@ -1,0 +1,17 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.card-img {
+  border-radius: 0.6rem;
+  background-color: transparent;
+  object-fit: cover;
+  height: 30rem;
+  width: 100%;
+  @include boxShadow(0rem 2rem 5rem rgba(0, 0, 0, 0.2));
+
+  &:hover {
+    border-radius: 0.6rem 0.6rem 0 0;
+    @include boxShadow(none);
+    background-color: $light;
+  }
+}

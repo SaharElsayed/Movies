@@ -2,8 +2,15 @@
 @import '../../scss/mixins';
 
 .form-group {
+  .input-group > .form-control,
+  .input-group > .form-control-plaintext,
+  .input-group > .custom-select,
+  .input-group > .custom-file{
+    color: $text;
+  }
+  
   .search-form {
-    padding: 0 1rem;
+    padding: 0.2rem 1rem;
     z-index: 1;
     position: absolute;
     top: 25px;
@@ -34,8 +41,7 @@
       background-color: transparent;
       width: 100%;
       margin-left: 0rem;
-      padding-left: 0;
-      color: $text;
+      padding-left: 0.5rem;
       border-width: initial;
       border-style: none;
       border-color: initial;
@@ -47,6 +53,10 @@
         @include boxShadow(none);
         border-radius: 3.57rem;
       }
+    }
+
+    ::placeholder {
+      color: $text;
     }
   }
 }
