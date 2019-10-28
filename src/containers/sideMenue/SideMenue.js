@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import Logo from './../../components/logo/Logo';
 import { faHeart, faChartLine, faTable } from '@fortawesome/free-solid-svg-icons';
 import List from '../../components/list/List';
-import './SideMenue.scss';
 import { fetchMoviesRequest, fetchSideListRequest, fetchActiveTab, setSearchKeyword } from '../../redux/actions/index';
+import history from '../../app/history';
+import './SideMenue.scss';
 
 class SideMenue extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class SideMenue extends React.Component {
       page: 1,
       with_genres: api ? '' : id
     });
+    history.push('/');
   };
 
   render() {

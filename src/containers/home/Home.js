@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchMoviesRequest } from '../../redux/actions/index';
 import Loader from './../../components/loader/Loader';
 
-
 const MoviesList = React.lazy(() => import('./../moviesList/MoviesList'));
 const Pagination = React.lazy(() => import('./../../components/pagination/Pagination'));
 

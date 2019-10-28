@@ -1,7 +1,6 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
-import Loader from '../../components/loader/Loader';
 import './MoviesList.scss';
 
 const Card = React.lazy(() => import('../../components/card/Card'));
@@ -38,7 +37,7 @@ class MoviesList extends React.Component {
                   title={item.title}
                   id={item.id}
                   img={item.poster_path ? `https://image.tmdb.org/t/p/w342${item.poster_path}` : `/assets/svgs/nothing.svg`}
-                  initialRating={item.vote_average / 2}
+                  rating={item.vote_average}
                   size='lg'
                 />
               )

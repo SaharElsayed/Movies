@@ -3,7 +3,6 @@ export const isHandlerEnabled = (config = {}) => {
 };
 
 export const requestHandler = (request) => {
-
   if (isHandlerEnabled(request)) {
     // Modify request here
     // request.headers['X-CodePen'] = 'https://codepen.io/teroauralinna/full/vPvKWe'
