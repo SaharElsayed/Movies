@@ -4,6 +4,7 @@ import { faDotCircle } from '@fortawesome/free-solid-svg-icons';
 import './List.scss';
 
 const List = ({ title, links, activeLink, handleClick }) => {
+  console.log(links);
 
   return (
     <React.Fragment>

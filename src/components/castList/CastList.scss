@@ -1,0 +1,18 @@
+@import '../../scss/variables';
+@import "../../scss/mixins";
+
+.cast{
+  
+  &__artist{
+    img{
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      @include transitions(all 100ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s);
+    }
+  }
+}
+
+.slick-next:before, .slick-prev:before{
+  color: black;
+}

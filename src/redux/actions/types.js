@@ -14,3 +14,11 @@ export const SET_SEARCH_KEYWORD = 'SET_SEARCH_KEYWORD';
 
 //========= sort =========
 export const SET_SORTING = 'SET_SORTING';
+
+//======= fetch cast ======
+export const FETCH_CAST_REQUEST = 'FETCH_CAST_REQUEST';
+export const FETCH_CAST = 'FETCH_CAST';
+
+//======== fetch single movie =======
+export const FETCH_SINGLE_MOVIE_REQUEST = 'FETCH_SINGLE_MOVIE_REQUEST';
+export const FETCH_SINGLE_MOVIE = 'FETCH_SINGLE_MOVIE';

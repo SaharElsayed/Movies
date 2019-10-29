@@ -44,7 +44,7 @@ class MoviesList extends React.Component {
             })
           }
         </Row>
-      </React.Fragment >
+      </React.Fragment>
     );
   }
 }

@@ -1,6 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import * as types from '../actions/types';
 import API from '../../apis/Movies';
+import CastAPI from '../../apis/Cast';
+
 
 function* getSideList() {
   try {
@@ -22,7 +24,28 @@ function* getMovies({ keyword, params }) {
   }
 }
 
+function* getCastList({ id }) {
+  try {
+    const response = yield call(CastAPI.fetchCastList, id);
+    yield put({ type: types.FETCH_CAST, payload: response.data.cast });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* getSingleMovie({ id, params }) {
+  try {
+    const response = yield call(API.fetchSingleMovie, id, params);
+    yield put({ type: types.FETCH_SINGLE_MOVIE, payload: response.data });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function* watchSagas() {
   yield takeEvery(types.FETCH_SIDE_LIST_REQUEST, getSideList);
   yield takeEvery(types.FETCH_MOVIES_REQUEST, getMovies);
+  yield takeEvery(types.FETCH_CAST_REQUEST, getCastList);
+  yield takeEvery(types.FETCH_SINGLE_MOVIE_REQUEST, getSingleMovie);
+
 }

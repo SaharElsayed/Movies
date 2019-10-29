@@ -6,6 +6,8 @@ const fetchMovies = async (type, params) => {
   return await axiosInstance.get(`${handleBaseAPI(params, type)}`, { params: { ...params } });
 }
 
+const fetchSingleMovie = async (id, params) => await axiosInstance.get(`/movie/${id}`, { params: { ...params } });
+
 const handleBaseAPI = (params, type) => {
   switch (true) {
     case !params.with_genres && !params.query:
@@ -17,4 +19,4 @@ const handleBaseAPI = (params, type) => {
   }
 };
 
-export default { fetchSideList, fetchMovies };
+export default { fetchSideList, fetchMovies, fetchSingleMovie };

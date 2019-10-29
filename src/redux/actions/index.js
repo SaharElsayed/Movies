@@ -16,3 +16,11 @@ export const setSearchKeyword = payload => ({ type: types.SET_SEARCH_KEYWORD, pa
 
 //========= sort =========
 export const setSorting = payload => ({ type: types.SET_SORTING, payload });
+
+// =========== fetch cast ========
+export const fetchCastRequest = id => ({ type: types.FETCH_CAST_REQUEST, id });
+export const fetchCast = payload => ({ type: types.FETCH_CAST, payload });
+
+// =========== fetch single movie ========
+export const fetchSingleMovieRequest = (id, params) => ({ type: types.FETCH_SINGLE_MOVIE_REQUEST, id, params });
+export const fetchSingleMovie = payload => ({ type: types.FETCH_SINGLE_MOVIE, payload });
