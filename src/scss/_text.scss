@@ -22,21 +22,25 @@ html {
 h1 {
   font-size: $large-bold;
   font-family: $bold;
+  text-transform: uppercase;
 }
 
 .h1-light {
   font-size: $large-light;
   font-family: $light-font;
+  text-transform: uppercase;
 }
 
 h2 {
   font-size: $medium-bold;
   font-family: $bold;
+  text-transform: uppercase;
 }
 
 .h2-light {
   font-size: $medium-light;
   font-family: $light-font;
+  text-transform: uppercase;
 }
 
 h3 {

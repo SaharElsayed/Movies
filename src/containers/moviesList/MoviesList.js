@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
+import { ImgBaseURL } from '../../utils/Constants';
+
 import './MoviesList.scss';
 
 const Card = React.lazy(() => import('../../components/card/Card'));
@@ -36,7 +38,7 @@ class MoviesList extends React.Component {
                   key={i}
                   title={item.title}
                   id={item.id}
-                  img={item.poster_path ? `https://image.tmdb.org/t/p/w342${item.poster_path}` : `/assets/svgs/nothing.svg`}
+                  img={item.poster_path ? `${ImgBaseURL}${item.poster_path}` : `/assets/svgs/nothing.svg`}
                   rating={item.vote_average}
                   size='lg'
                 />

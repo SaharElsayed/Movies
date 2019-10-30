@@ -46,7 +46,6 @@ class SideMenue extends React.Component {
           <Logo />
           <List title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
           <List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
-
         </div>
 
         {/* <Menu>

@@ -59,4 +59,20 @@
     color: $link;
     font-size: $regular-size;
   }
+
+  &__genres{
+    span{
+      text-transform: uppercase;
+    }
+  }
+
+  .buttons-wrapper{
+    &__leftBtns{
+      .btn{
+        margin-right: 20px;
+        padding: 0 20px;
+        
+      }
+    }
+  }
 }
