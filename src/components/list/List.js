@@ -4,13 +4,12 @@ import { faDotCircle } from '@fortawesome/free-solid-svg-icons';
 import './List.scss';
 
 const List = ({ title, links, activeLink, handleClick }) => {
-  // console.log(links);
-
   return (
     <React.Fragment>
-      <h2>{title.toUpperCase()}</h2>
+      <h2>{title}</h2>
       <ul className='list'>
-        {links && (links.length > 0) &&
+        {
+          links && (links.length > 0) &&
           links.map(link => {
             return (
               <li

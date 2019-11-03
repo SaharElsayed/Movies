@@ -39,7 +39,6 @@ class SideMenue extends React.Component {
   render() {
     const { links } = this.state;
     const { sideMenue, activeTab: { id } } = this.props;
-
     return (
       <React.Fragment>
         <div className='side-menu'>

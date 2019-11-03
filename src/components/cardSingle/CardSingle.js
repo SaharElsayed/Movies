@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDotCircle, faLink, faPlay, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faDotCircle, faLink, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faImdb } from '@fortawesome/free-brands-svg-icons';
-
+import history from '../../app/history';
 import { ImgBaseURL } from '../../utils/Constants';
 import Loader from './../loader/Loader';
 import './CardSingle.scss';
@@ -11,6 +11,7 @@ const CardImage = React.lazy(() => import('./../cardImage/CardImage'));
 const Rating = React.lazy(() => import('./../rating/Rating'));
 const CastList = React.lazy(() => import('./../castList/CastList'));
 const Button = React.lazy(() => import('./../button/Button'));
+const VideoModal = React.lazy(() => import('./../../containers/videoModal/VideoModal'));
 
 // Render info of movie
 const renderInfo = (languages, time, data) => {
@@ -36,19 +37,41 @@ const splitYear = (date) => {
 
 // Render Genres with links
 const renderGenres = (genres) => {
-  return genres.map((genre, i) => (
-    <div className="text-light font-weight-bold pr-3" key={i}>
-      <FontAwesomeIcon
-        icon={faDotCircle}
-        size='1x'
-        className="mr-1"
+  if (genres) {
+    return genres.map((genre, i) => (
+      <div className="text-light font-weight-bold pr-3" key={i}>
+        <FontAwesomeIcon
+          icon={faDotCircle}
+          size='1x'
+          className="mr-1"
+        />
+        <span>{genre.name}</span>
+      </div>
+    ));
+  }
+}
+
+// Render Trailer button. On click triggers state to open modal of trailer
+function renderTrailer(videos) {
+  if (videos.length === 0) {
+    return;
+  }
+  const { key } = videos.find(
+    video => video.type === 'Trailer' && video.site === 'YouTube'
+  );
+  return (
+    <React.Fragment>
+      <VideoModal
+        channel="youtube"
+        videoId={key}
       />
-      <span>{genre.name}</span>
-    </div>
-  ));
+    </React.Fragment>
+  );
 }
 
 const CardSingle = ({ movie, cast }) => {
+  console.log(movie);
+
   return (
     (movie && cast) &&
     <div className="card-single row justify-content-between align-items-start">
@@ -95,30 +118,31 @@ const CardSingle = ({ movie, cast }) => {
 
         <div className="buttons-wrapper d-flex justify-content-between">
           <div className='buttons-wrapper__leftBtns d-flex justify-content-between'>
-            <Button
-              text='Website'
-              icon={faLink}
-              className="btn-outline-primary"
-              order='1'
-              size='lg'
-              dir='l'
-            />
-            <Button
-              text='IMDB'
-              icon={faImdb}
-              className="btn-outline-primary"
-              order='1'
-              size='lg'
-              dir='l'
-            />
-            <Button
-              text='Trailer'
-              icon={faPlay}
-              className="btn-outline-primary"
-              order='1'
-              size='lg'
-              dir='l'
-            />
+            {
+              movie.homepage &&
+              <Button
+                text='Website'
+                icon={faLink}
+                className="btn-outline-primary"
+                order='1'
+                size='lg'
+                dir='l'
+                action={() => window.open(movie.homepage, '_blank')}
+              />
+            }
+            {
+              movie.imdb_id &&
+              <Button
+                text='IMDB'
+                icon={faImdb}
+                className="btn-outline-primary"
+                order='1'
+                size='lg'
+                dir='l'
+                action={() => window.open(`https://www.imdb.com/title/${movie.imdb_id}`, '_blank')}
+              />
+            }
+            {renderTrailer(movie.videos.results)}
           </div>
           <Button
             text='Back'
@@ -126,6 +150,7 @@ const CardSingle = ({ movie, cast }) => {
             order='0'
             size='lg'
             dir='r'
+            action={history.goBack}
           />
         </div>
 
