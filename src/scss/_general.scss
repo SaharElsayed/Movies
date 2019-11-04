@@ -4,4 +4,14 @@
   grid-gap: 25px;
   padding-top: 35px;
   padding-bottom: 35px;
+  @include media-breakpoint-down(xl) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 1fr;
+    padding: 35px;
+  }
 }

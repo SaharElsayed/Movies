@@ -2,20 +2,26 @@ import React from 'react';
 import Button from '../button/Button';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
-import { fetchMoviesRequest } from '../../redux/actions/index';
+import { fetchMoviesRequest, fetchRecommendedRequest } from '../../redux/actions/index';
+import history from '../../app/history';
 import './Pagination.scss';
 
 class Pagination extends React.Component {
 
   handlePagination = (page) => {
-    const { fetchMoviesRequest, activeTab: { key, id }, searchKeyword: { search }, sort: { sortingKey } } = this.props;
-
-    fetchMoviesRequest(key, {
-      page,
-      with_genres: key ? '' : id,
-      query: search ? search : '',
-      sort_by: sortingKey ? sortingKey : ''
-    });
+    const { fetchMoviesRequest, fetchRecommendedRequest, activeTab: { key, id }, searchKeyword: { search }, sort: { sortingKey } } = this.props;
+    switch (true) {
+      case history.location.pathname.includes('/Movie'):
+        fetchRecommendedRequest(history.location.pathname.replace('/Movie/', ''), { page });
+        break;
+      default:
+        fetchMoviesRequest(key, {
+          page,
+          with_genres: key ? '' : id,
+          query: search ? search : '',
+          sort_by: sortingKey ? sortingKey : ''
+        });
+    }
   }
 
   render() {
@@ -54,4 +60,4 @@ class Pagination extends React.Component {
 const mapStateToProps = state => {
   return { ...state }
 }
-export default connect(mapStateToProps, { fetchMoviesRequest })(Pagination);
+export default connect(mapStateToProps, { fetchMoviesRequest, fetchRecommendedRequest })(Pagination);

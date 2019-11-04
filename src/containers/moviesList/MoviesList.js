@@ -7,16 +7,18 @@ import './MoviesList.scss';
 
 const Card = React.lazy(() => import('../../components/card/Card'));
 const Sorting = React.lazy(() => import('../../components/sorting/Sorting'));
+const Pagination = React.lazy(() => import('./../../components/pagination/Pagination'));
 
 class MoviesList extends React.Component {
   render() {
-    const { list: { results }, activeTab: { title, key }, searchKeyword: { search } } = this.props;
+    const { list: { results, page }, pageTitle, activeTab: { title, key }, searchKeyword: { search }, recommended } = this.props;
+    
     return (
       <React.Fragment>
         <div className="header-wrapper">
           <h1 className="h1-light">
             {
-              search.length === 0 ? title.toUpperCase() : search.toUpperCase()
+              pageTitle ? pageTitle : search.length === 0 ? title : search
             }
           </h1>
           <h2 className="h2-light">
@@ -26,7 +28,7 @@ class MoviesList extends React.Component {
           </h2>
         </div>
         {
-          (!key && search.length === 0) &&
+          (!key && search.length === 0 && !recommended) &&
           <Sorting />
         }
         <Row className="card-wrapper">
@@ -46,6 +48,7 @@ class MoviesList extends React.Component {
             })
           }
         </Row>
+        <Pagination page={page} />
       </React.Fragment>
     );
   }

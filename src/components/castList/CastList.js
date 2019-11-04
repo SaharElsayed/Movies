@@ -19,7 +19,7 @@ const CastList = ({ cast }) => {
     autoplaySpeed: 3000,
     swipeToSlide: true,
     speed: 500,
-    slidesToShow: 6,
+    slidesToShow: 9,
     slidesToScroll: 1,
 
   };

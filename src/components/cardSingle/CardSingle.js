@@ -21,12 +21,12 @@ class CardSingle extends React.Component {
     }
   }
 
-  renderInfo = (languages, time, data) => {
+  renderInfo = (languages, time, date) => {
     const info = [];
     if (languages && languages.length !== 0) {
       info.push(languages[0].name);
     }
-    info.push(time, data);
+    info.push(time, date);
 
     return info
       .filter(el => el !== null)
@@ -57,7 +57,7 @@ class CardSingle extends React.Component {
     }
   }
 
-  renderTrailer = (videos, isOpen, callBack) => {
+    renderTrailer = (videos, isOpen, callBack) => {
     if (videos.length === 0) {
       return;
     }
@@ -154,7 +154,10 @@ class CardSingle extends React.Component {
                 />
               }
 
-              {this.renderTrailer(movie.videos.results, isOpen, this.ChangeModalState)}
+              {
+                movie.videos &&
+                this.renderTrailer(movie.videos.results, isOpen, this.ChangeModalState)
+              }
 
             </div>
 

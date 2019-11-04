@@ -8,6 +8,8 @@ const fetchMovies = async (type, params) => {
 
 const fetchSingleMovie = async (id, params) => await axiosInstance.get(`/movie/${id}`, { params: { ...params } });
 
+const fetchRecommended = async (id, params) => await axiosInstance.get(`/movie/${id}/recommendations`, { params: { ...params } });
+
 const handleBaseAPI = (params, type) => {
   switch (true) {
     case !params.with_genres && !params.query:
@@ -19,4 +21,4 @@ const handleBaseAPI = (params, type) => {
   }
 };
 
-export default { fetchSideList, fetchMovies, fetchSingleMovie };
+export default { fetchSideList, fetchMovies, fetchSingleMovie, fetchRecommended };

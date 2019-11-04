@@ -25,13 +25,15 @@ class SideMenue extends React.Component {
   }
 
   handleClick = (api, id, name) => {
-    const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest } = this.props;
-
+    const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest, sort:{sortingKey} } = this.props;
+    console.log(this.props);
+    
     setSearchKeyword({ search: "" });
     fetchActiveTab({ id: id, title: name, key: api });
     fetchMoviesRequest(api, {
       page: 1,
-      with_genres: api ? '' : id
+      with_genres: api ? '' : id,
+      sort_by: sortingKey
     });
     history.push('/');
   };
@@ -57,7 +59,7 @@ class SideMenue extends React.Component {
   }
 }
 
-const mapStateToprops = state => {
+const mapStateToprops = state => {  
   return { ...state };
 }
 

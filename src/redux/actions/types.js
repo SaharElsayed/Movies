@@ -22,3 +22,7 @@ export const FETCH_CAST = 'FETCH_CAST';
 //======== fetch single movie =======
 export const FETCH_SINGLE_MOVIE_REQUEST = 'FETCH_SINGLE_MOVIE_REQUEST';
 export const FETCH_SINGLE_MOVIE = 'FETCH_SINGLE_MOVIE';
+
+//============ fetch recommended
+export const FETCH_RECOMMENDED_REQUEST = 'FETCH_RECOMMENDED_REQUEST';
+export const FETCH_RECOMMENDED = 'FETCH_RECOMMENDED';

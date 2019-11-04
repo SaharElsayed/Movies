@@ -1,6 +1,6 @@
 import * as types from '../actions/types';
 
-const intialState = { sortingKey: '' };
+const intialState = { sortingKey: 'popularity.desc' };
 
 export default (state = intialState, action) => {
   switch (action.type) {

@@ -24,3 +24,7 @@ export const fetchCast = payload => ({ type: types.FETCH_CAST, payload });
 // =========== fetch single movie ========
 export const fetchSingleMovieRequest = (id, params) => ({ type: types.FETCH_SINGLE_MOVIE_REQUEST, id, params });
 export const fetchSingleMovie = payload => ({ type: types.FETCH_SINGLE_MOVIE, payload });
+
+//=========== fetch recommended =====
+export const fetchRecommendedRequest = (id, params) => ({ type: types.FETCH_RECOMMENDED_REQUEST, id, params });
+export const fetchRecommended = payload => ({ type: types.FETCH_RECOMMENDED, payload });

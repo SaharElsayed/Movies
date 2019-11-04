@@ -42,10 +42,21 @@ function* getSingleMovie({ id, params }) {
   }
 }
 
+function* getRecommended({ params, id }) {
+
+  try {
+    const response = yield call(API.fetchRecommended,id, params);
+    yield put({ type: types.FETCH_RECOMMENDED, payload: response.data });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function* watchSagas() {
   yield takeEvery(types.FETCH_SIDE_LIST_REQUEST, getSideList);
   yield takeEvery(types.FETCH_MOVIES_REQUEST, getMovies);
   yield takeEvery(types.FETCH_CAST_REQUEST, getCastList);
   yield takeEvery(types.FETCH_SINGLE_MOVIE_REQUEST, getSingleMovie);
+  yield takeEvery(types.FETCH_RECOMMENDED_REQUEST, getRecommended);
 
 }
