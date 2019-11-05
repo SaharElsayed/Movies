@@ -3,7 +3,6 @@ import * as types from '../actions/types';
 import API from '../../apis/Movies';
 import CastAPI from '../../apis/Cast';
 
-
 function* getSideList() {
   try {
     const response = yield call(API.fetchSideList);
@@ -15,7 +14,6 @@ function* getSideList() {
 }
 
 function* getMovies({ keyword, params }) {
-
   try {
     const response = yield call(API.fetchMovies, keyword, params);
     yield put({ type: types.FETCH_MOVIES, payload: response.data });
@@ -43,10 +41,18 @@ function* getSingleMovie({ id, params }) {
 }
 
 function* getRecommended({ params, id }) {
-
   try {
     const response = yield call(API.fetchRecommended,id, params);
     yield put({ type: types.FETCH_RECOMMENDED, payload: response.data });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* getArtistDetails({ id, params }) {
+  try {
+    const response = yield call(CastAPI.fetchArtistDetails, id, params);    
+    yield put({ type: types.FETCH_ARTIST, payload: response.data });
   } catch (error) {
     console.log(error);
   }
@@ -58,5 +64,6 @@ export default function* watchSagas() {
   yield takeEvery(types.FETCH_CAST_REQUEST, getCastList);
   yield takeEvery(types.FETCH_SINGLE_MOVIE_REQUEST, getSingleMovie);
   yield takeEvery(types.FETCH_RECOMMENDED_REQUEST, getRecommended);
+  yield takeEvery(types.FETCH_ARTIST_REQUEST, getArtistDetails);
 
 }

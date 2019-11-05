@@ -46,6 +46,7 @@ h2 {
 h3 {
   font-size: $regular-size;
   font-family: $bold;
+  text-transform: uppercase;
 }
 
 h4 {
@@ -56,6 +57,7 @@ h4 {
 p {
   font-size: $medium-bold;
   font-family: $medium;
+  line-height: 1.8;
 }
 
 a {

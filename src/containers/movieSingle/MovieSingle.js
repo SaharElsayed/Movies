@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSingleMovieRequest, fetchCastRequest, fetchRecommendedRequest } from '../../redux/actions/index';
-import './MovieSingle.scss';
 
 const CardSingle = React.lazy(() => import('../../components/cardSingle/CardSingle'));
 const MovieList = React.lazy(() => import('../moviesList/MoviesList'));

@@ -6,7 +6,7 @@ import './List.scss';
 const List = ({ title, links, activeLink, handleClick }) => {
   return (
     <React.Fragment>
-      <h2>{title}</h2>
+      <h3>{title}</h3>
       <ul className='list'>
         {
           links && (links.length > 0) &&

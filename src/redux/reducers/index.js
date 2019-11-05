@@ -5,6 +5,7 @@ import ActiveTabReducer from './ActiveTabReducer';
 import SearchReducer from './SearchReducer';
 import SortReducer from './SortReducer';
 import SingleMovieReducer from './SingleMovieReducer';
+import ArtistDetailsReducer from './ArtistDetailsReducer';
 
 export default combineReducers({
   list: ListReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   activeTab: ActiveTabReducer,
   searchKeyword: SearchReducer,
   sort: SortReducer,
-  singleMovie: SingleMovieReducer
+  singleMovie: SingleMovieReducer,
+  artist: ArtistDetailsReducer
 });
