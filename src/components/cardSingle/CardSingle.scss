@@ -1,11 +1,30 @@
-@import "../../scss/mixins";
 @import "../../scss/variables";
+@import "../../scss/mixins";
+@import '~bootstrap/scss/bootstrap-grid.scss';
+@import '~bootstrap/scss/mixins';
 
 .card-single{
-  margin: 0px auto 5rem;
-  max-width: 120rem;
+  margin: 0px auto;
+  margin-bottom: 3.5rem;
+  max-width: 80rem;
   width: 100%;
 
+  @include media-breakpoint-down(xl) {
+    max-width: 90rem;
+  }
+  @include media-breakpoint-down(lg) {
+    max-width: 80rem;
+    margin-bottom: 4.3rem;
+  }
+  @include media-breakpoint-down(md) {
+    max-width: 75rem;
+    margin-bottom: 3.5rem;
+  }
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+    margin-bottom: 3.5rem;
+  }
+  
   &__img{
     width: 100%;
     max-width: 40%;
@@ -75,4 +94,5 @@
       }
     }
   }
+  
 }

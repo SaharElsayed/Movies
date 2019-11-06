@@ -13,7 +13,7 @@ export const Routes = (
       <Switch>
         <Home path="/" exact />
         <MovieSingle path="/Movie/:id" />
-        <ArtistDetails path='/artist/:id' />
+        <ArtistDetails path='/Artist/:id' />
       </Switch>
     </Route>
   </Suspense>

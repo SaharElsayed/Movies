@@ -7,12 +7,20 @@ import history from '../../app/history';
 import './Pagination.scss';
 
 class Pagination extends React.Component {
-
-  handlePagination = (page) => {
+  handlePagination = (page) => {    
     const { fetchMoviesRequest, fetchRecommendedRequest, activeTab: { key, id }, searchKeyword: { search }, sort: { sortingKey } } = this.props;
     switch (true) {
       case history.location.pathname.includes('/Movie'):
-        fetchRecommendedRequest(history.location.pathname.replace('/Movie/', ''), { page });
+        const MovieId = history.location.pathname.replace('/Movie/', '');
+        fetchRecommendedRequest(MovieId, { page });
+        break;
+      case history.location.pathname.includes('/Artist'):
+        const artistId = history.location.pathname.replace('/Artist/', '');
+        fetchMoviesRequest(artistId, {
+          page,
+          sort_by: sortingKey ? sortingKey : '',
+          with_cast: artistId
+        });
         break;
       default:
         fetchMoviesRequest(key, {

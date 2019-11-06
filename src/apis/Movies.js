@@ -12,7 +12,7 @@ const fetchRecommended = async (id, params) => await axiosInstance.get(`/movie/$
 
 const handleBaseAPI = (params, type) => {
   switch (true) {
-    case !params.with_genres && !params.query:
+    case !params.with_genres && !params.query && !params.with_cast:
       return `/movie/${type}`;
     case params.query && !params.with_genres:
       return `/search/movie`;

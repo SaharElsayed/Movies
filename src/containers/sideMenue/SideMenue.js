@@ -25,11 +25,9 @@ class SideMenue extends React.Component {
   }
 
   handleClick = (api, id, name) => {
-    const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest, sort:{sortingKey} } = this.props;
-    console.log(this.props);
-    
+    const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest, sort:{sortingKey} } = this.props;    
     setSearchKeyword({ search: "" });
-    fetchActiveTab({ id: id, title: name, key: api });
+    fetchActiveTab({ id: id === 0 ? 1 : id, title: name, key: api });
     fetchMoviesRequest(api, {
       page: 1,
       with_genres: api ? '' : id,

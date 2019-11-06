@@ -20,15 +20,17 @@ class Sorting extends React.Component {
   }
 
   handleChange = selectedOption => {
-    const { fetchMoviesRequest, setSorting, activeTab: { key, id }, searchKeyword: { search } } = this.props;
-
+    console.log(this.props);
+    
+    const { fetchMoviesRequest, setSorting, activeTab: { key, id }, searchKeyword: { search }, artist:{id: artistID} } = this.props;    
     this.setState({ selectedOption });
     setSorting({ sortingKey: selectedOption.value });
     fetchMoviesRequest(key, {
       page: 1,
-      with_genres: key ? '' : id,
+      with_genres: (key && artistID) ? '' : id,
       query: search ? search : '',
-      sort_by: selectedOption.value
+      sort_by: selectedOption.value,
+      with_cast: artistID ? artistID : ''
     });
   };
 

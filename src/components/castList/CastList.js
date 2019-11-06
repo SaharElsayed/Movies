@@ -36,7 +36,7 @@ const CastList = ({ cast }) => {
               <img
                 src={artist.profile_path ? `${ImgBaseURL}${artist.profile_path}` : '/assets/svgs/person.svg'}
                 alt="logo"
-                onClick={() => history.push(`/artist/${artist.id}`)}
+                onClick={() => history.push(`/Artist/${artist.id}`)}
               />
             </div>
           )
