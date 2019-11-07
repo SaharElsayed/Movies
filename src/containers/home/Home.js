@@ -10,7 +10,7 @@ class Home extends React.Component {
   componentDidMount() {
     const { fetchMoviesRequest, fetchActiveTab, activeTab: { key, title, id } } = this.props;
     fetchMoviesRequest(key, { page: 1 });
-    fetchActiveTab({ id: id === 0 ? 1 : id, title, key });
+    // fetchActiveTab({ id: id === 0 ? 1 : id, title, key });
   }
 
   render() {

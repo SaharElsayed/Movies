@@ -10,7 +10,7 @@ class MovieSingle extends React.Component {
   componentDidMount() {
     const { id } = this.props.computedMatch.params;
     this.fetchSingle(id);
-    this.props.fetchActiveTab({id:0});
+    // this.props.fetchActiveTab({ id: 0 });
   }
 
   componentDidUpdate(prevProps) {
@@ -30,11 +30,17 @@ class MovieSingle extends React.Component {
   }
 
   render() {
-    const { singleMovie:{movie, cast}} = this.props;
+    const { singleMovie: { movie, cast } } = this.props;
     return (
       <React.Fragment>
         <CardSingle movie={movie} cast={cast} />
-        <MovieList pageTitle="recommended" recommended emptyStatement='There are no recommended movies...' />
+        <MovieList
+          pageTitle="recommended"
+          recommended
+          emptyTitle='Sorry!'
+          emptyStatement='There are no recommended movies...'
+          emptySrc='/assets/svgs/empty.svg'
+        />
       </React.Fragment>
     )
   }

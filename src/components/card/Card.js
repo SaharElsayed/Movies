@@ -1,17 +1,15 @@
 import React, { Suspense } from 'react';
 import { Card as ItemCard } from 'react-bootstrap';
 import Loader from '../loader/Loader';
-import history from '../../app/history';
 import './Card.scss';
 
 const Rating = React.lazy(() => import('../rating/Rating'));
 const CardImage = React.lazy(() => import('../cardImage/CardImage'));
 
-
 const Card = (props) => {
   return (
     <React.Fragment>
-      <ItemCard className='movieCard text-center' key={props.id} onClick={() => history.push(`/Movie/${props.id}`)}>
+      <ItemCard className='movieCard text-center'>
         <Suspense fallback={<Loader />}>
           <CardImage src={props.img} />
         </Suspense>

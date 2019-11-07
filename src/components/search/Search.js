@@ -2,9 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Form, InputGroup } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { fetchMoviesRequest, setSearchKeyword } from '../../redux/actions/index';
-
+import history from '../../app/history';
 import './Search.scss';
 
 class Search extends React.Component {
@@ -15,14 +13,9 @@ class Search extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { fetchMoviesRequest, setSearchKeyword, activeTab: { key } } = this.props;
     const keyword = this.searchInput.value;
-    setSearchKeyword({ search: keyword });
-    fetchMoviesRequest(key, {
-      page: 1,
-      query: keyword
-    });
     this.searchInput.value = '';
+    history.push(`/search/${keyword}`);
   }
 
   render() {
@@ -55,8 +48,5 @@ class Search extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { ...state };
-}
 
-export default connect(mapStateToProps, { fetchMoviesRequest, setSearchKeyword })(Search);
+export default Search;
