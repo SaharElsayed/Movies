@@ -6,6 +6,7 @@ import SearchReducer from './SearchReducer';
 import SortReducer from './SortReducer';
 import SingleMovieReducer from './SingleMovieReducer';
 import ArtistDetailsReducer from './ArtistDetailsReducer';
+import Loader from './Loader';
 
 export default combineReducers({
   list: ListReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   searchKeyword: SearchReducer,
   sort: SortReducer,
   singleMovie: SingleMovieReducer,
-  artist: ArtistDetailsReducer
+  artist: ArtistDetailsReducer,
+  loader: Loader
 });

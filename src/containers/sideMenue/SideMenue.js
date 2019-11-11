@@ -14,7 +14,7 @@ class SideMenue extends React.Component {
     this.state = {
       links: [
         { id: 1, name: "Popular", api: 'popular', icon: faHeart },
-        { id: 2, name: "Top rated", api: 'top_rated', icon: faChartLine },
+        { id: 2, name: "Top Rated", api: 'top_rated', icon: faChartLine },
         { id: 3, name: "Upcoming", api: 'upcoming', icon: faTable }
       ]
     }

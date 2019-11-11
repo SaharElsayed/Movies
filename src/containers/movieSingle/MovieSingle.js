@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSingleMovieRequest, fetchCastRequest, fetchRecommendedRequest, fetchActiveTab } from '../../redux/actions/index';
+import TabTitle from './../../components/tabTitle/TabTitle';
 
 const CardSingle = React.lazy(() => import('../../components/cardSingle/CardSingle'));
 const MovieList = React.lazy(() => import('../moviesList/MoviesList'));
@@ -33,6 +34,7 @@ class MovieSingle extends React.Component {
     const { singleMovie: { movie, cast } } = this.props;
     return (
       <React.Fragment>
+          <TabTitle title={`${movie.original_title} - Movie Library`} />
         <CardSingle movie={movie} cast={cast} />
         <MovieList
           pageTitle="recommended"

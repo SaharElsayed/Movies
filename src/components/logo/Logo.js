@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import history from './../../app/history';
 import './Logo.scss';
 
 const Logo = () => {
   return (
-    <Link to='/' className="logoWrapper">
+    <div onClick={() => history.push('/')} className="logoWrapper">
       <img src='/assets/svgs/logo.svg' alt="logo" className="logoWrapper__img" />
-    </Link>
+    </div>
   )
 }
 

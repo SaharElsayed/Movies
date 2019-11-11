@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchMoviesRequest, setSearchKeyword } from '../../redux/actions/index';
+import TabTitle from './../../components/tabTitle/TabTitle';
 
 const MoviesList = React.lazy(() => import('../moviesList/MoviesList'));
 
 class Search extends React.Component {
-
   componentDidMount() {
     const { keyword } = this.props.computedMatch.params;
     this.fetchList(keyword);
@@ -29,6 +29,8 @@ class Search extends React.Component {
     const { searchKeyword: { search }, activeTab: { title }, list: { results } } = this.props;
     return (
       <React.Fragment>
+        {/* {(results && results.length) > 0 ? <TabTitle title={`${search} - Search results`} /> : <TabTitle title={`Movie Library`} /> } */}
+        <TabTitle title={`${search} - Search results`} />
         <MoviesList
           pageTitle={(search.length === 0) ? title : (results && results.length > 0) ? search : ' '}
           subTitle={(search.length === 0) ? 'MOVIES' : ((search.length > 0) && (results && results.length > 0)) ? 'SEARCH RESULTS' : ' '}

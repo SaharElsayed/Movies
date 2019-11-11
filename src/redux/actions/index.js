@@ -32,3 +32,6 @@ export const fetchRecommended = payload => ({ type: types.FETCH_RECOMMENDED, pay
 // =========== fetch single artist ========
 export const fetchArtistDetailsRequest = (id, params) => ({ type: types.FETCH_ARTIST_REQUEST, id, params });
 export const fetchArtistDetails = payload => ({ type: types.FETCH_ARTIST, payload });
+
+//========== set loader =======
+export const setLoader = payload => ({type: types.SET_LOADER, payload});

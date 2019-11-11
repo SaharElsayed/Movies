@@ -10,9 +10,7 @@ const Card = (props) => {
   return (
     <React.Fragment>
       <ItemCard className='movieCard text-center'>
-        <Suspense fallback={<Loader />}>
           <CardImage src={props.img} />
-        </Suspense>
         <ItemCard.Body className="movieCard__body">
           <h2 className="movieCard__title h2-light">{props.title}</h2>
           <Rating initialRating={props.rating} />

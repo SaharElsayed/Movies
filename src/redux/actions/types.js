@@ -30,3 +30,6 @@ export const FETCH_RECOMMENDED = 'FETCH_RECOMMENDED';
 //======= fetch single artist ======
 export const FETCH_ARTIST_REQUEST = 'FETCH_ARTIST_REQUEST';
 export const FETCH_ARTIST = 'FETCH_ARTIST';
+
+//========== set loader =======
+export const SET_LOADER = 'SET_LOADER';

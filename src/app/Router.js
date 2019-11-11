@@ -1,15 +1,19 @@
 import React, { Suspense } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Loader from './../components/loader/Loader';
+import { Router } from 'react-router';
+import history from './history'
 
 const Home = React.lazy(() => import('../containers/home/Home'));
 const MovieSingle = React.lazy(() => import('../containers/movieSingle/MovieSingle'));
 const ArtistDetails = React.lazy(() => import('../containers/artist/ArtistDetails'));
 const Search = React.lazy(() => import('../containers/search/Search'));
 const ErrorPage = React.lazy(() => import('../containers/errorPage/ErrorPage'));
+
+
 export const Routes = (
   <Suspense fallback={<Loader />}>
-    <Route>
+    <Router history={history}>
       <Switch>
         <Home path="/" exact />
         <MovieSingle path="/movie/:id" />
@@ -17,6 +21,6 @@ export const Routes = (
         <Search path='/search/:keyword' />
         <ErrorPage path="**" />
       </Switch>
-    </Route>
+    </Router>
   </Suspense>
 );
