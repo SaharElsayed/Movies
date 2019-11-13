@@ -82,6 +82,8 @@ class CardSingle extends React.Component {
 
   render() {
     const { movie, cast } = this.props;
+    console.log(this.props);
+    
     const { isOpen } = this.state;
     return (
       (movie && cast) &&

@@ -5,16 +5,14 @@ import history from './history'
 import { Container, Row, Col } from 'react-bootstrap';
 import SideMenue from './../containers/sideMenue/SideMenue';
 import Search from './../components/search/Search';
-import './App.scss';
 import { connect } from 'react-redux';
 import Loader from './../components/loader/Loader';
+import './App.scss';
 
 class App extends React.Component {
 
   render() {
     const { loading } = this.props;
-    console.log(loading);
-    
     return (
       <React.Fragment>
         <Container fluid>
@@ -25,11 +23,12 @@ class App extends React.Component {
             </Col>
             <Col lg='10' md='10' className="pt-md-60 pr-md-40 pb-md-60 pl-md-40">
               {loading ? <Loader /> : null}
-              <Router history={history}>{Routes}</Router>
+              <div className={`${loading ? 'd-none' : ''}`}>
+                <Router history={history}>{Routes}</Router>
+              </div>
             </Col>
           </Row>
         </Container>
-        {/* </Router> */}
       </React.Fragment>
     );
 
