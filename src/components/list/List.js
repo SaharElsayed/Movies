@@ -3,7 +3,9 @@ import Button from '../button/Button';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons';
 import './List.scss';
 
-const List = ({ title, links, activeLink, handleClick }) => {
+const List = (props) => {
+  console.log(props);
+  const { title, links, activeLink, handleClick } = props;
   return (
     <React.Fragment>
       <h3>{title}</h3>

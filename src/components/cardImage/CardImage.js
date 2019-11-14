@@ -11,7 +11,7 @@ const CardImage = props => {
   return (
     <React.Fragment>
       <img src={props.src} alt="img" className={`card-img ${imgLoader ? 'd-none' : ''}`} onLoad={handleLoader} />
-      { imgLoader ? <Loader imgSize /> : null }
+      {imgLoader ? <Loader imgSize /> : null}
     </React.Fragment>
   )
 }
