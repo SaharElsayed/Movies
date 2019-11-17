@@ -8,9 +8,7 @@ const MoviesList = React.lazy(() => import('./../moviesList/MoviesList'));
 
 class Home extends React.Component {
   componentDidMount() {
-    // const { fetchMoviesRequest, fetchActiveTab, activeTab: { key, title, id } } = this.props;
-    console.log(this.props);
-    
+    // const { fetchMoviesRequest, fetchActiveTab, activeTab: { key, title, id } } = this.props;      
     const { fetchMoviesRequest, activeTab: { key } } = this.props;
     fetchMoviesRequest(key, { page: 1 });
     // fetchActiveTab({ id: id === 0 ? 1 : id, title, key });

@@ -12,6 +12,7 @@ class Pagination extends React.Component {
     switch (true) {
       case history.location.pathname.includes('/movie'):
         const MovieId = history.location.pathname.replace('/movie/', '');
+        history.push({search: `?page=${page}` });
         fetchRecommendedRequest(MovieId, { page });
         break;
       case history.location.pathname.includes('/artist'):
@@ -21,6 +22,7 @@ class Pagination extends React.Component {
           sort_by: sortingKey ? sortingKey : '',
           with_cast: artistId
         });
+        history.push({search: `?page=${page}` });
         break;
       default:
         fetchMoviesRequest(key, {
@@ -29,6 +31,7 @@ class Pagination extends React.Component {
           query: search ? search : '',
           sort_by: sortingKey ? sortingKey : ''
         });
+        history.push({search: `?page=${page}` });
     }
   }
 

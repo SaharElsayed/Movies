@@ -61,6 +61,7 @@ class CardSingle extends React.Component {
     if (videos.length === 0) {
       return;
     }
+    
     const { key } = videos.find(
       video => video.type === 'Trailer' && video.site === 'YouTube'
     );
@@ -82,7 +83,6 @@ class CardSingle extends React.Component {
 
   render() {
     const { movie, cast } = this.props;
-    console.log(this.props);
     
     const { isOpen } = this.state;
     return (
