@@ -5,9 +5,7 @@ import history from '../../app/history';
 import { ImgBaseURL } from '../../utils/Constants';
 import Loader from './../loader/Loader';
 import './ArtistCard.scss';
-
-const CardImage = React.lazy(() => import('./../cardImage/CardImage'));
-const Button = React.lazy(() => import('./../button/Button'));
+import * as LazyComponent from './../../utils/LazyLoaded';
 
 const ArtistCard = ({ artist }) => {
   return (
@@ -15,7 +13,7 @@ const ArtistCard = ({ artist }) => {
     <div className="artist-single row justify-content-center align-items-start">
       <div className="artist-single__img">
         <Suspense fallback={<Loader />}>
-          <CardImage src={artist.profile_path ? `${ImgBaseURL}${artist.profile_path}` : `/assets/svgs/person.svg`} />
+          <LazyComponent.CardImage src={artist.profile_path ? `${ImgBaseURL}${artist.profile_path}` : `/assets/svgs/person.svg`} />
         </Suspense>
       </div>
 
@@ -33,7 +31,7 @@ const ArtistCard = ({ artist }) => {
         <div className="buttons-wrapper d-flex justify-content-between">
           <div className='buttons-wrapper__leftBtns d-flex justify-content-between'>
             {artist.homepage &&
-              <Button
+              <LazyComponent.Button
                 text='Website'
                 icon={faLink}
                 className="btn-outline-primary"
@@ -45,7 +43,7 @@ const ArtistCard = ({ artist }) => {
             }
 
             {artist.imdb_id &&
-              <Button
+              <LazyComponent.Button
                 text='IMDB'
                 icon={faImdb}
                 className="btn-outline-primary"
@@ -56,7 +54,7 @@ const ArtistCard = ({ artist }) => {
               />
             }
           </div>
-          <Button
+          <LazyComponent.Button
             text='Back'
             icon={faArrowLeft}
             order='0'

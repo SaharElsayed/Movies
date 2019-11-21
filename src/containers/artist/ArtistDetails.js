@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { Suspense }  from 'react';
 import { connect } from 'react-redux';
-import { fetchArtistDetailsRequest } from '../../redux/actions/index';
-import { fetchMoviesRequest } from '../../redux/actions/index';
-import TabTitle from './../../components/tabTitle/TabTitle';
-
-const ArtistCard = React.lazy(() => import('./../../components/artistCard/ArtistCard'));
-const MovieList = React.lazy(() => import('../moviesList/MoviesList'));
+import * as actions from '../../redux/actions/index';
+import * as LazyComponent from './../../utils/LazyLoaded';
+import Loader from './../../components/loader/Loader';
 
 class ArtistDetails extends React.Component {
 	componentDidMount() {
@@ -33,15 +30,22 @@ class ArtistDetails extends React.Component {
 		const { artist } = this.props;
 		return (
 			<React.Fragment>
-				<TabTitle title={`${artist.name} - Movie Library`} />
-				<ArtistCard artist={artist} />
-				<MovieList pageTitle="also enters in" artistKey />
+				<Suspense fallback={<Loader />}>
+					<LazyComponent.TabTitle title={`${artist.name} - Movie Library`} />
+					<LazyComponent.ArtistCard artist={artist} />
+					<LazyComponent.MoviesList pageTitle="also enters in" artistKey />
+				</Suspense>
 			</React.Fragment>
 		)
 	}
 }
 
+const mapDispatchToProps = {
+	fetchArtistDetailsRequest: actions.fetchArtistDetailsRequest,
+	fetchMoviesRequest: actions.fetchMoviesRequest
+};
+
 const mapStateToProps = state => {
 	return { ...state }
 }
-export default connect(mapStateToProps, { fetchArtistDetailsRequest, fetchMoviesRequest })(ArtistDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(ArtistDetails);

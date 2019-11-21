@@ -5,18 +5,23 @@
   padding: 0;
   list-style: none;
   margin-bottom: 40px;
-
+  a{
+    text-decoration: none;
+  }
+  
   &__item {
     margin-bottom: 0.28rem;
 
     &.active_item .btn {
-      color: $secondary;
+      color: $primary;
       border: 1px solid $secondary;
       background-color: transparent;
     }
   }
 
   &__btn.button {
+    font-size: $medium-light;
+    padding: 0.5rem 1rem;
     border-color: transparent;
     color: $light;
     margin-bottom: 0.28rem;

@@ -1,0 +1,22 @@
+import React from 'react';
+
+export const MoviesList = React.lazy(() => import('./../containers/moviesList/MoviesList'));
+export const ArtistCard = React.lazy(() => import('./../components/artistCard/ArtistCard'));
+export const NotFound = React.lazy(() => import('./../containers/notFound/NotFound'));
+export const CardSingle = React.lazy(() => import('./../components/cardSingle/CardSingle'));
+export const CardImage = React.lazy(() => import('./../components/cardImage/CardImage'));
+export const Rating = React.lazy(() => import('./../components/rating/Rating'));
+export const CastList = React.lazy(() => import('./../components/castList/CastList'));
+export const Button = React.lazy(() => import('./../components/button/Button'));
+export const VideoModal = React.lazy(() => import('../components/videoModal/VideoModal'));
+export const Card = React.lazy(() => import('./../components/card/Card'));
+export const Sorting = React.lazy(() => import('./../components/sorting/Sorting'));
+export const Pagination = React.lazy(() => import('./../components/pagination/Pagination'));
+export const TabTitle = React.lazy(() => import('./../components/tabTitle/TabTitle'));
+export const List = React.lazy(() => import('./../components/list/List'));
+export const Logo = React.lazy(() => import('./../components/logo/Logo'));
+export const Home = React.lazy(() => import('./../containers/home/Home'));
+export const MovieSingle = React.lazy(() => import('./../containers/movieSingle/MovieSingle'));
+export const ArtistDetails = React.lazy(() => import('./../containers/artist/ArtistDetails'));
+export const Search = React.lazy(() => import('./../containers/search/Search'));
+export const ErrorPage = React.lazy(() => import('./../components/errorPage/ErrorPage'));

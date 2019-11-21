@@ -5,13 +5,8 @@ import { faImdb } from '@fortawesome/free-brands-svg-icons';
 import history from '../../app/history';
 import { ImgBaseURL } from '../../utils/Constants';
 import Loader from './../loader/Loader';
+import * as LazyComponent from './../../utils/LazyLoaded';
 import './CardSingle.scss';
-
-const CardImage = React.lazy(() => import('./../cardImage/CardImage'));
-const Rating = React.lazy(() => import('./../rating/Rating'));
-const CastList = React.lazy(() => import('./../castList/CastList'));
-const Button = React.lazy(() => import('./../button/Button'));
-const VideoModal = React.lazy(() => import('./../../containers/videoModal/VideoModal'));
 
 class CardSingle extends React.Component {
   constructor(props) {
@@ -67,7 +62,7 @@ class CardSingle extends React.Component {
     );
     return (
       <React.Fragment>
-        <VideoModal
+        <LazyComponent.VideoModal
           channel="youtube"
           videoId={key}
           action={callBack}
@@ -83,15 +78,14 @@ class CardSingle extends React.Component {
 
   render() {
     const { movie, cast } = this.props;
-    
     const { isOpen } = this.state;
+
     return (
       (movie && cast) &&
       <div className="card-single row justify-content-between align-items-start">
-
         <div className="card-single__img">
           <Suspense fallback={<Loader />}>
-            <CardImage src={movie.poster_path ? `${ImgBaseURL}${movie.poster_path}` : `/assets/svgs/nothing.svg`} />
+            <LazyComponent.CardImage src={movie.poster_path ? `${ImgBaseURL}${movie.poster_path}` : `/assets/svgs/nothing.svg`} />
           </Suspense>
         </div>
 
@@ -102,7 +96,7 @@ class CardSingle extends React.Component {
           </div>
 
           <div className="d-flex justify-content-between card-single__rate mb-5">
-            <Rating size='lg' initialRating={movie.vote_average} showAverage />
+            <LazyComponent.Rating size='lg' initialRating={movie.vote_average} showAverage />
             <h3>
               {this.renderInfo(
                 movie.spoken_languages,
@@ -126,14 +120,14 @@ class CardSingle extends React.Component {
 
           <div className="mb-5">
             <h3 className="mb-3">THE CAST</h3>
-            <CastList cast={cast} />
+            <LazyComponent.CastList cast={cast} />
           </div>
 
           <div className="buttons-wrapper d-flex justify-content-between">
             <div className='buttons-wrapper__leftBtns d-flex justify-content-between'>
 
               {movie.homepage &&
-                <Button
+                <LazyComponent.Button
                   text='Website'
                   icon={faLink}
                   className="btn-outline-primary"
@@ -145,7 +139,7 @@ class CardSingle extends React.Component {
               }
 
               {movie.imdb_id &&
-                <Button
+                <LazyComponent.Button
                   text='IMDB'
                   icon={faImdb}
                   className="btn-outline-primary"
@@ -163,7 +157,7 @@ class CardSingle extends React.Component {
 
             </div>
 
-            <Button
+            <LazyComponent.Button
               text='Back'
               icon={faArrowLeft}
               order='0'

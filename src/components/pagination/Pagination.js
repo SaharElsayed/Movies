@@ -1,18 +1,24 @@
 import React from 'react';
-import Button from '../button/Button';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
-import { fetchMoviesRequest, fetchRecommendedRequest } from '../../redux/actions/index';
 import history from '../../app/history';
+import * as actions from '../../redux/actions/index';
+import * as LazyComponent from './../../utils/LazyLoaded';
 import './Pagination.scss';
 
 class Pagination extends React.Component {
   handlePagination = (page) => {
-    const { fetchMoviesRequest, fetchRecommendedRequest, activeTab: { key, id }, searchKeyword: { search }, sort: { sortingKey } } = this.props;
+    const {
+      fetchMoviesRequest, fetchRecommendedRequest,
+      activeTab: { key, id },
+      searchKeyword: { search },
+      sort: { sortingKey }
+    } = this.props;
+
     switch (true) {
       case history.location.pathname.includes('/movie'):
         const MovieId = history.location.pathname.replace('/movie/', '');
-        history.push({search: `?page=${page}` });
+        history.push({ search: `?page=${page}` });
         fetchRecommendedRequest(MovieId, { page });
         break;
       case history.location.pathname.includes('/artist'):
@@ -22,7 +28,7 @@ class Pagination extends React.Component {
           sort_by: sortingKey ? sortingKey : '',
           with_cast: artistId
         });
-        history.push({search: `?page=${page}` });
+        history.push({ search: `?page=${page}` });
         break;
       default:
         fetchMoviesRequest(key, {
@@ -31,7 +37,7 @@ class Pagination extends React.Component {
           query: search ? search : '',
           sort_by: sortingKey ? sortingKey : ''
         });
-        history.push({search: `?page=${page}` });
+        history.push({ search: `?page=${page}` });
     }
   }
 
@@ -41,7 +47,7 @@ class Pagination extends React.Component {
       <div className={`row pagination ${page === 1 ? 'justify-content-end' : 'justify-content-between'}`}>
         {
           page > 1 &&
-          <Button
+          <LazyComponent.Button
             text={`page ${page - 1}`}
             className='btn'
             icon={faArrowLeft}
@@ -53,7 +59,7 @@ class Pagination extends React.Component {
         }
         {
           page < total_pages &&
-          <Button
+          <LazyComponent.Button
             text={`page ${page + 1}`}
             className='btn'
             icon={faArrowRight}
@@ -68,7 +74,12 @@ class Pagination extends React.Component {
   }
 };
 
+const mapDispatchToProps = {
+  fetchRecommendedRequest: actions.fetchRecommendedRequest,
+  fetchMoviesRequest: actions.fetchMoviesRequest
+};
+
 const mapStateToProps = state => {
   return { ...state }
 }
-export default connect(mapStateToProps, { fetchMoviesRequest, fetchRecommendedRequest })(Pagination);
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

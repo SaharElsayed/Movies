@@ -6,7 +6,7 @@ import './Button.scss';
 const Button = ({ text, icon, size, order, dir, className, action }) => {
 
   return (
-    <PrimaryButton className={`d-flex button ${className}`} onClick={action}>
+    <PrimaryButton className={`d-flex button align-items-center ${className}`} onClick={action}>
       <FontAwesomeIcon
         icon={icon}
         size={size}

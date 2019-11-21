@@ -17,11 +17,11 @@ class App extends React.Component {
       <React.Fragment>
         <Container fluid>
           <Search />
-          <Row>
+          <Row id="App">
             <Col lg='2' md='2' className="pr-md-0 pl-md-0">
-              <SideMenue />
+              <SideMenue pageWrapId={"page-wrap"} outerContainerId={"App"} />
             </Col>
-            <Col lg='10' md='10' className="pt-md-60 pr-md-40 pb-md-60 pl-md-40">
+            <Col id="page-wrap" lg='10' md='10' className="pt-md-60 pr-md-40 pb-md-60 pl-md-40">
               {loading ? <Loader /> : null}
               <div className={`${loading ? 'd-none' : ''}`}>
                 <Router history={history}>{Routes}</Router>

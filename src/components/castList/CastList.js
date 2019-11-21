@@ -3,9 +3,6 @@ import Slider from "react-slick";
 import Loader from './../loader/Loader';
 import { ImgBaseURL } from '../../utils/Constants';
 import history from '../../app/history';
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-
 import './CastList.scss';
 
 const CastList = ({ cast }) => {
@@ -23,9 +20,6 @@ const CastList = ({ cast }) => {
     slidesToScroll: 1,
 
   };
-
-  // nextArrow: <FontAwesomeIcon icon={faChevronRight} size='sm' />,
-  // prevArrow: <FontAwesomeIcon icon={faChevronLeft} size='sm' />,
 
   return (
     <Slider className="cast" {...settings}>

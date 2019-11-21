@@ -1,55 +1,64 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
-import { fetchSingleMovieRequest, fetchCastRequest, fetchRecommendedRequest, fetchActiveTab } from '../../redux/actions/index';
-import TabTitle from './../../components/tabTitle/TabTitle';
-
-const CardSingle = React.lazy(() => import('../../components/cardSingle/CardSingle'));
-const MovieList = React.lazy(() => import('../moviesList/MoviesList'));
+import * as actions from '../../redux/actions/index';
+import * as LazyComponent from './../../utils/LazyLoaded';
+import Loader from './../../components/loader/Loader';
 
 class MovieSingle extends React.Component {
-
   componentDidMount() {
-    const { id } = this.props.computedMatch.params;
+    const { computedMatch: { params: { id } } } = this.props;
     this.fetchSingle(id);
-    // this.props.fetchActiveTab({ id: 0 });
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.computedMatch.params.id !== prevProps.computedMatch.params.id) {
-      this.fetchSingle(this.props.computedMatch.params.id)
+    const { computedMatch: { params: { id: nextId } } } = this.props;
+    const { computedMatch: { params: { id } } } = prevProps;
+    if (nextId !== id) {
+      this.fetchSingle(nextId)
     }
   }
 
-  fetchSingle = (id) => {
-    this.props.fetchSingleMovieRequest(id, {
+  fetchSingle = id => {
+    const { fetchSingleMovieRequest, fetchCastRequest, fetchRecommendedRequest } = this.props;
+    fetchSingleMovieRequest(id, {
       append_to_response: 'videos'
     });
-    this.props.fetchCastRequest(id);
-    this.props.fetchRecommendedRequest(id, {
+    fetchCastRequest(id);
+    fetchRecommendedRequest(id, {
       page: 1
     })
   }
 
   render() {
-    const { singleMovie: { movie, cast } } = this.props;
+    const { movie, cast } = this.props;
     return (
       <React.Fragment>
-          <TabTitle title={`${movie.original_title} - Movie Library`} />
-        <CardSingle movie={movie} cast={cast} />
-        <MovieList
-          pageTitle="recommended"
-          recommended
-          emptyTitle='Sorry!'
-          emptyStatement='There are no recommended movies...'
-          emptySrc='/assets/svgs/empty.svg'
-        />
+        <Suspense fallback={<Loader />}>
+          <LazyComponent.TabTitle title={`${movie.original_title} - Movie Library`} />
+          <LazyComponent.CardSingle movie={movie} cast={cast} />
+          <LazyComponent.MoviesList
+            pageTitle="recommended"
+            recommended
+            emptyTitle='Sorry!'
+            emptyStatement='There are no recommended movies...'
+            emptySrc='/assets/svgs/empty.svg'
+          />
+        </Suspense>
       </React.Fragment>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return { ...state };
-}
+const mapDispatchToProps = {
+  fetchSingleMovieRequest: actions.fetchSingleMovieRequest,
+  fetchCastRequest: actions.fetchCastRequest,
+  fetchRecommendedRequest: actions.fetchRecommendedRequest,
+  fetchActiveTab: actions.fetchActiveTab
+};
 
-export default connect(mapStateToProps, { fetchSingleMovieRequest, fetchCastRequest, fetchRecommendedRequest, fetchActiveTab })(MovieSingle);
+const mapStateToProps = (state) => ({
+  movie: state.singleMovie.movie,
+  cast: state.singleMovie.cast
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieSingle);

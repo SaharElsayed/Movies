@@ -1,14 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ImgBaseURL } from '../../utils/Constants';
-import './MoviesList.scss';
 import { animateScroll as scroll } from "react-scroll";
 import { Link } from 'react-router-dom';
-
-const Card = React.lazy(() => import('../../components/card/Card'));
-const Sorting = React.lazy(() => import('../../components/sorting/Sorting'));
-const Pagination = React.lazy(() => import('./../../components/pagination/Pagination'));
-const NotFound = React.lazy(() => import('../notFound/NotFound'));
+import { ImgBaseURL } from '../../utils/Constants';
+import * as LazyComponent from './../../utils/LazyLoaded';
+import './MoviesList.scss';
 
 class MoviesList extends React.Component {
   scrollToTop = () => {
@@ -28,6 +24,7 @@ class MoviesList extends React.Component {
       emptySrc,
       subTitle
     } = this.props;
+
     return (
       <React.Fragment>
         <div className="header-wrapper">
@@ -39,7 +36,7 @@ class MoviesList extends React.Component {
           </h2>
         </div>
         {
-          (!key && search.length === 0 && !recommended) || (artistKey) ? <Sorting /> : ''
+          (!key && search.length === 0 && !recommended) || (artistKey) ? <LazyComponent.Sorting /> : ''
         }
         {
           (results && results.length > 0) ?
@@ -47,7 +44,7 @@ class MoviesList extends React.Component {
               {results.map((item, i) => {
                 return (
                   <Link to={`/movie/${item.id}`} key={i} onClick={this.scrollToTop()}>
-                    <Card
+                    <LazyComponent.Card
                       title={item.title}
                       id={item.id}
                       img={item.poster_path ? `${ImgBaseURL}${item.poster_path}` : `/assets/svgs/nothing.svg`}
@@ -57,13 +54,13 @@ class MoviesList extends React.Component {
                   </Link>
                 )
               })} </div> :
-            <NotFound
+            <LazyComponent.NotFound
               emptyTitle={emptyTitle}
               statement={emptyStatement ? emptyStatement : `there were no results for ${search}`}
               emptySrc={emptySrc || '/assets/svgs/empty.svg'}
             />
         }
-        <Pagination page={page} />
+        <LazyComponent.Pagination page={page} />
       </React.Fragment>
     );
   }

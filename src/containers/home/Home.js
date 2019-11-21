@@ -1,35 +1,40 @@
 import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
-import { fetchMoviesRequest, fetchActiveTab } from '../../redux/actions/index';
 import Loader from './../../components/loader/Loader';
-import TabTitle from './../../components/tabTitle/TabTitle';
-
-const MoviesList = React.lazy(() => import('./../moviesList/MoviesList'));
+import * as actions from '../../redux/actions/index';
+import * as LazyComponent from './../../utils/LazyLoaded';
 
 class Home extends React.Component {
   componentDidMount() {
-    // const { fetchMoviesRequest, fetchActiveTab, activeTab: { key, title, id } } = this.props;      
-    const { fetchMoviesRequest, activeTab: { key } } = this.props;
-    fetchMoviesRequest(key, { page: 1 });
-    // fetchActiveTab({ id: id === 0 ? 1 : id, title, key });
+    const { fetchMoviesRequest, activeTab: { key, id }, sortingKey } = this.props;
+    fetchMoviesRequest(key, {
+      page: 1,
+      with_genres: key ? '' : id,
+      sort_by: sortingKey
+    });
   }
 
   render() {
-    const { activeTab: { title } } = this.props;
-
+    const { activeTab: { title } } = this.props;    
     return (
       <React.Fragment>
         <Suspense fallback={<Loader />}>
-          <TabTitle title={`${title} Movies`} />
-          <MoviesList />
+          <LazyComponent.TabTitle title={`${title} Movies`} />
+          <LazyComponent.MoviesList />
         </Suspense>
       </React.Fragment>
     );
   }
 }
 
-const mapStateToprops = state => {
-  return { ...state };
-}
+const mapDispatchToProps = {
+  fetchMoviesRequest: actions.fetchMoviesRequest,
+  fetchActiveTab: actions.fetchActiveTab
+};
 
-export default connect(mapStateToprops, { fetchMoviesRequest, fetchActiveTab })(Home);
+const mapStateToprops = state => ({
+  activeTab: state.activeTab,
+  sortingKey: state.sort.sortingKey
+})
+
+export default connect(mapStateToprops, mapDispatchToProps)(Home);

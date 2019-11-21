@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
-import { setSorting, fetchMoviesRequest } from '../../redux/actions/index';
+import * as actions from '../../redux/actions/index';
 import './Sorting.scss';
 
 const options = [
@@ -20,7 +20,14 @@ class Sorting extends React.Component {
   }
 
   handleChange = selectedOption => {
-    const { fetchMoviesRequest, setSorting, activeTab: { key, id }, searchKeyword: { search }, artist: { id: artistID } } = this.props;
+    const {
+      fetchMoviesRequest,
+      setSorting,
+      activeTab: { key, id },
+      searchKeyword: { search },
+      artist: { id: artistID }
+    } = this.props;
+    
     this.setState({ selectedOption });
     setSorting({ sortingKey: selectedOption.value });
     fetchMoviesRequest(key, {
@@ -52,8 +59,13 @@ class Sorting extends React.Component {
   }
 }
 
+const mapDispatchToProps = {
+  setSorting: actions.setSorting,
+  fetchMoviesRequest: actions.fetchMoviesRequest
+};
+
 const mapStateToProps = state => {
   return { ...state };
 }
 
-export default connect(mapStateToProps, { setSorting, fetchMoviesRequest })(Sorting);
+export default connect(mapStateToProps, mapDispatchToProps)(Sorting);

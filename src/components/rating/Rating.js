@@ -5,7 +5,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons'
 
 const Rating = ({ initialRating, size, showAverage }) => {
-
   return (
     <div>
       <Stars

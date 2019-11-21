@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
-import { fetchMoviesRequest, setSearchKeyword } from '../../redux/actions/index';
-import TabTitle from './../../components/tabTitle/TabTitle';
-
-const MoviesList = React.lazy(() => import('../moviesList/MoviesList'));
+import * as actions from '../../redux/actions/index';
+import * as LazyComponent from './../../utils/LazyLoaded';
+import Loader from './../../components/loader/Loader';
 
 class Search extends React.Component {
   componentDidMount() {
@@ -12,12 +11,14 @@ class Search extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.computedMatch.params.keyword !== prevProps.computedMatch.params.keyword) {
-      this.fetchList(this.props.computedMatch.params.keyword)
+    const { computedMatch: { params: { keyword: nextKeyword } } } = this.props;
+    const { computedMatch: { params: { keyword } } } = prevProps;
+    if (nextKeyword !== keyword) {
+      this.fetchList(nextKeyword)
     }
   }
 
-  fetchList(searchKey) {
+  fetchList = searchKey => {
     const { fetchMoviesRequest, setSearchKeyword, activeTab: { key } } = this.props;
     setSearchKeyword({ search: searchKey });
     fetchMoviesRequest(key, {
@@ -25,22 +26,29 @@ class Search extends React.Component {
       query: searchKey
     });
   }
+
   render() {
     const { searchKeyword: { search }, activeTab: { title }, list: { results } } = this.props;
     return (
       <React.Fragment>
-        {/* {(results && results.length) > 0 ? <TabTitle title={`${search} - Search results`} /> : <TabTitle title={`Movie Library`} /> } */}
-        <TabTitle title={`${search} - Search results`} />
-        <MoviesList
-          pageTitle={(search.length === 0) ? title : (results && results.length > 0) ? search : ' '}
-          subTitle={(search.length === 0) ? 'MOVIES' : ((search.length > 0) && (results && results.length > 0)) ? 'SEARCH RESULTS' : ' '}
-        />
+        <Suspense fallback={<Loader />}>
+          <LazyComponent.TabTitle title={`${search} - Search results`} />
+          <LazyComponent.MoviesList
+            pageTitle={(search.length === 0) ? title : (results && results.length > 0) ? search : ' '}
+            subTitle={(search.length === 0) ? 'MOVIES' : ((search.length > 0) && (results && results.length > 0)) ? 'SEARCH RESULTS' : ' '}
+          />
+        </Suspense>
       </React.Fragment>
     )
   }
 }
 
+const mapDispatchToProps = {
+  setSearchKeyword: actions.setSearchKeyword,
+  fetchMoviesRequest: actions.fetchMoviesRequest
+};
+
 const mapStateToProps = state => {
   return { ...state }
 }
-export default connect(mapStateToProps, { fetchMoviesRequest, setSearchKeyword })(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

@@ -1,12 +1,12 @@
-import React from 'react';
-// import { slide as Menu } from 'react-burger-menu';
+import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
-import Logo from './../../components/logo/Logo';
 import { faHeart, faChartLine, faTable } from '@fortawesome/free-solid-svg-icons';
-import List from '../../components/list/List';
-import { fetchMoviesRequest, fetchSideListRequest, fetchActiveTab, setSearchKeyword } from '../../redux/actions/index';
+import * as actions from '../../redux/actions/index';
+import * as LazyComponent from './../../utils/LazyLoaded';
+import Loader from './../../components/loader/Loader';
 import history from '../../app/history';
 import './SideMenue.scss';
+import { slide as Menu } from "react-burger-menu";
 
 class SideMenue extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class SideMenue extends React.Component {
   }
 
   handleClick = (api, id, name) => {
-    const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest, sort:{sortingKey} } = this.props;    
+    const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest, sort: { sortingKey } } = this.props;
     setSearchKeyword({ search: "" });
     fetchActiveTab({ id: id === 0 ? 1 : id, title: name, key: api });
     fetchMoviesRequest(api, {
@@ -39,26 +39,42 @@ class SideMenue extends React.Component {
   render() {
     const { links } = this.state;
     const { sideMenue, activeTab: { id } } = this.props;
+    const { innerWidth: width, innerHeight: height } = window;
+    console.log(width);
+    
     return (
       <React.Fragment>
         <div className='side-menu'>
-          <Logo />
-          <List title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
-          <List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
+          <Suspense fallback={<Loader />}>
+            {
+              (width <= 1024 && height <= 843) ?
+                <Menu {...this.props}>
+                  <LazyComponent.List title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
+                  <LazyComponent.List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
+                </Menu>
+                :
+                <>
+                  <LazyComponent.Logo />
+                  <LazyComponent.List title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
+                  <LazyComponent.List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
+                </>
+            }
+          </Suspense>
         </div>
-
-        {/* <Menu>
-            <a id="home" className="menu-item" href="/">Home</a>
-            <a id="about" className="menu-item" href="/about">About</a>
-            <a id="contact" className="menu-item" href="/contact">Contact</a>
-          </Menu> */}
       </React.Fragment>
     )
   }
 }
 
-const mapStateToprops = state => {  
+const mapDispatchToProps = {
+  fetchSideListRequest: actions.fetchSideListRequest,
+  fetchMoviesRequest: actions.fetchMoviesRequest,
+  fetchActiveTab: actions.fetchActiveTab,
+  setSearchKeyword: actions.setSearchKeyword
+};
+
+const mapStateToprops = state => {
   return { ...state };
 }
 
-export default connect(mapStateToprops, { fetchMoviesRequest, fetchSideListRequest, fetchActiveTab, setSearchKeyword })(SideMenue);
+export default connect(mapStateToprops, mapDispatchToProps)(SideMenue);
