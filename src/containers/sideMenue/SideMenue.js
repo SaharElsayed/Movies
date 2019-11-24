@@ -16,7 +16,9 @@ class SideMenue extends React.Component {
         { id: 1, name: "Popular", api: 'popular', icon: faHeart },
         { id: 2, name: "Top Rated", api: 'top_rated', icon: faChartLine },
         { id: 3, name: "Upcoming", api: 'upcoming', icon: faTable }
-      ]
+      ],
+      height: window.innerHeight, 
+      width: window.innerWidth
     }
   };
 
@@ -36,11 +38,27 @@ class SideMenue extends React.Component {
     history.push('/');
   };
 
+  componentDidMount() {
+    console.log(this.state.height);
+    // Additionally I could have just used an arrow function for the binding `this` to the component...
+    window.addEventListener("resize", this.updateDimensions);
+  }
+
+  updateDimensions = () => {
+    this.setState({
+      height: window.innerHeight, 
+      width: window.innerWidth
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
+
   render() {
     const { links } = this.state;
     const { sideMenue, activeTab: { id } } = this.props;
     const { innerWidth: width, innerHeight: height } = window;
-    console.log(width);
     
     return (
       <React.Fragment>
@@ -53,11 +71,11 @@ class SideMenue extends React.Component {
                   <LazyComponent.List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
                 </Menu>
                 :
-                <>
+                <React.Fragment>
                   <LazyComponent.Logo />
                   <LazyComponent.List title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
                   <LazyComponent.List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
-                </>
+                </React.Fragment>
             }
           </Suspense>
         </div>
