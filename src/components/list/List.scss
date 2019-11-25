@@ -17,6 +17,11 @@
       border: 1px solid $secondary;
       background-color: transparent;
     }
+
+    &.active_item_mobile .btn{
+      color: white;
+      border: 1px solid white;
+    }
   }
 
   &__btn.button {
@@ -35,4 +40,12 @@
       background-color: transparent;
     }
   }
+  &__btn{
+    &____white.button{
+    color: white;
+    &:hover{
+      border: 1px solid white;
+    }
+  }
+}
 }

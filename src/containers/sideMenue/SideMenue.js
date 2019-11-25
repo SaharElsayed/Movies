@@ -17,17 +17,19 @@ class SideMenue extends React.Component {
         { id: 2, name: "Top Rated", api: 'top_rated', icon: faChartLine },
         { id: 3, name: "Upcoming", api: 'upcoming', icon: faTable }
       ],
-      height: window.innerHeight, 
-      width: window.innerWidth
+      width: window.innerWidth,
+      isOpened: false
     }
   };
 
   componentDidMount() {
     this.props.fetchSideListRequest();
+    window.addEventListener("resize", this.updateDimensions);
   }
 
   handleClick = (api, id, name) => {
     const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest, sort: { sortingKey } } = this.props;
+    this.setState({isOpened: false});    
     setSearchKeyword({ search: "" });
     fetchActiveTab({ id: id === 0 ? 1 : id, title: name, key: api });
     fetchMoviesRequest(api, {
@@ -38,47 +40,45 @@ class SideMenue extends React.Component {
     history.push('/');
   };
 
-  componentDidMount() {
-    console.log(this.state.height);
-    // Additionally I could have just used an arrow function for the binding `this` to the component...
-    window.addEventListener("resize", this.updateDimensions);
-  }
-
   updateDimensions = () => {
     this.setState({
-      height: window.innerHeight, 
       width: window.innerWidth
     });
   }
+
+   isMenuOpen = ({ isOpened }) => {     
+    this.setState({isOpened: isOpened})
+  };
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateDimensions);
   }
 
   render() {
-    const { links } = this.state;
+    const { links, isOpened } = this.state;
     const { sideMenue, activeTab: { id } } = this.props;
-    const { innerWidth: width, innerHeight: height } = window;
-    
+    const { innerWidth: width} = window;    
     return (
       <React.Fragment>
-        <div className='side-menu'>
-          <Suspense fallback={<Loader />}>
-            {
-              (width <= 1024 && height <= 843) ?
-                <Menu {...this.props}>
-                  <LazyComponent.List title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
-                  <LazyComponent.List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
+        {
+          (width <= 1024) ?
+            <div className='mobile-menu'>
+              <Suspense fallback={<Loader />}>
+                <Menu {...this.props} isOpen={isOpened} onStateChange={this.isMenuOpen}>
+                  <LazyComponent.List mobile title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
+                  <LazyComponent.List mobile title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
                 </Menu>
-                :
-                <React.Fragment>
-                  <LazyComponent.Logo />
-                  <LazyComponent.List title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
-                  <LazyComponent.List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
-                </React.Fragment>
-            }
-          </Suspense>
-        </div>
+              </Suspense>
+            </div>
+            :
+            <div className='side-menu'>
+              <Suspense fallback={<Loader />}>
+                <LazyComponent.Logo />
+                <LazyComponent.List title='discover' links={links} handleClick={this.handleClick} activeLink={id} />
+                <LazyComponent.List title='geners' links={sideMenue} handleClick={this.handleClick} activeLink={id} />
+              </Suspense>
+            </div>
+        }
       </React.Fragment>
     )
   }

@@ -33,3 +33,6 @@ export const FETCH_ARTIST = 'FETCH_ARTIST';
 
 //========== set loader =======
 export const SET_LOADER = 'SET_LOADER';
+
+//========== set mobile =======
+// export const SET_MOBILE = 'SET_MOBILE';

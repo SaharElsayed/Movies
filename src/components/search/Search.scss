@@ -1,6 +1,10 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
+form{
+  height: 0;
+}
+
 .form-group {
   .input-group > .form-control,
   .input-group > .form-control-plaintext,
