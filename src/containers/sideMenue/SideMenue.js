@@ -17,14 +17,12 @@ class SideMenue extends React.Component {
         { id: 2, name: "Top Rated", api: 'top_rated', icon: faChartLine },
         { id: 3, name: "Upcoming", api: 'upcoming', icon: faTable }
       ],
-      width: window.innerWidth,
       isOpened: false
     }
   };
 
   componentDidMount() {
     this.props.fetchSideListRequest();
-    window.addEventListener("resize", this.updateDimensions);
   }
 
   handleClick = (api, id, name) => {
@@ -40,28 +38,17 @@ class SideMenue extends React.Component {
     history.push('/');
   };
 
-  updateDimensions = () => {
-    this.setState({
-      width: window.innerWidth
-    });
-  }
-
    isMenuOpen = ({ isOpened }) => {     
     this.setState({isOpened: isOpened})
   };
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions);
-  }
-
-  render() {
+  render() {    
     const { links, isOpened } = this.state;
-    const { sideMenue, activeTab: { id } } = this.props;
-    const { innerWidth: width} = window;    
+    const { sideMenue, activeTab: { id }, isMobile } = this.props;
     return (
       <React.Fragment>
         {
-          (width <= 1024) ?
+          isMobile ?
             <div className='mobile-menu'>
               <Suspense fallback={<Loader />}>
                 <Menu {...this.props} isOpen={isOpened} onStateChange={this.isMenuOpen}>

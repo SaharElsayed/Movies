@@ -18,7 +18,14 @@ const CastList = ({ cast }) => {
     speed: 500,
     slidesToShow: 9,
     slidesToScroll: 1,
-
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 5
+        }
+      }
+    ]
   };
 
   return (
