@@ -14,7 +14,7 @@ class App extends React.Component {
     super();
     this.state = { isMobile: null }
   }
-
+  
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions);
   }
@@ -50,10 +50,8 @@ class App extends React.Component {
         </Container>
       </React.Fragment>
     );
-
   }
 }
-
 const mapStateToProps = ({ loader }) => {
   return loader
 }
