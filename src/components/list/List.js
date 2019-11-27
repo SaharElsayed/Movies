@@ -21,7 +21,7 @@ class List extends React.Component {
     const { mobile } = this.state;
     return (
       <React.Fragment>
-        <h3 className={`${mobile ? 'text-white' : ''}`}>{title}</h3>
+        <h3 className={`${mobile ? 'text-white mb-4' : ''}`}>{title}</h3>
         <div className="list">
           {
             links && (links.length > 0) &&

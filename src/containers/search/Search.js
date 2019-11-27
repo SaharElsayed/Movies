@@ -5,7 +5,7 @@ import * as LazyComponent from './../../utils/LazyLoaded';
 import Loader from './../../components/loader/Loader';
 
 class Search extends React.Component {
-  componentDidMount() {
+  componentDidMount() {    
     const { keyword } = this.props.computedMatch.params;
     this.fetchList(keyword);
   }

@@ -1,0 +1,10 @@
+@import '../../scss/variables';
+
+.custom-navbar{
+  &--mobile{
+    background-color: $lighter;
+    height: 80px;
+    z-index: 2;
+    position: fixed!important;
+  }
+}

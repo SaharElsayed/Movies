@@ -35,12 +35,10 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Container fluid>
-          <Search />
+          {!isMobile && <Search />}
           <Row id="App">
-            <Col xl='2' lg='12' className="pr-md-0 pl-md-0">
-              <NavBar isMobile={isMobile} />
-            </Col>
-            <Col id="page-wrap" xl='10' lg='12' className="pt-md-60 pr-md-40 pb-md-60 pl-md-40">
+            <NavBar isMobile={isMobile} />
+            <Col id="page-wrap" xl='10' lg='12' className={`pt-md-60 pr-md-40 pb-md-60 pl-md-40 ${isMobile ? 'mt-md-40 mt-xs-100' : ''}`}>
               {loading ? <Loader /> : null}
               <div className={`${loading ? 'd-none' : ''}`}>
                 <Router history={history}>{Routes}</Router>
