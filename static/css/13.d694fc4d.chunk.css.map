@@ -1,1 +1,0 @@
-{"version":3,"sources":["MoviesList.scss"],"names":[],"mappings":"AAEA,gBACE,oBAAqB,CADvB,mBAGI,oCAA4B","file":"13.d694fc4d.chunk.css","sourcesContent":["@import '../../scss/variables';\r\n\r\n.header-wrapper{\r\n  margin-bottom: 1.4rem;\r\n  h2{\r\n    font-family: $bold!important;\r\n  }\r\n}\r\n"]}

@@ -1,0 +1,2 @@
+(window.webpackJsonpboilerplate=window.webpackJsonpboilerplate||[]).push([[14],{140:function(e,a,n){"use strict";n.r(a);var o=n(0),t=n.n(o),c=n(15),r=n(221),i=n.n(r);n(222);a.default=function(){return t.a.createElement("div",{onClick:function(){return c.a.push("/")},className:"logoWrapper"},t.a.createElement("img",{src:i.a,alt:"logo",className:"logoWrapper__img"}))}},221:function(e,a,n){e.exports=n.p+"static/media/logo.bcc287ea.svg"},222:function(e,a,n){}}]);
+//# sourceMappingURL=14.9c6b1579.chunk.js.map

@@ -1,2 +1,0 @@
-(window.webpackJsonpboilerplate=window.webpackJsonpboilerplate||[]).push([[16],{140:function(e,a,o){"use strict";o.r(a);var n=o(0),s=o.n(n),t=o(15);o(218);a.default=function(){return s.a.createElement("div",{onClick:function(){return t.a.push("/")},className:"logoWrapper"},s.a.createElement("img",{src:"/assets/svgs/logo.svg",alt:"logo",className:"logoWrapper__img"}))}},218:function(e,a,o){}}]);
-//# sourceMappingURL=16.ac24d55a.chunk.js.map
