@@ -25,14 +25,14 @@ class List extends React.Component {
         <div className="list">
           {
             links && (links.length > 0) &&
-            links.map(link => {              
+            links.map(link => {
               return (
                 <a className="menu-item" key={link.id}>
                   <div
                     className={`
                     list__item 
-                    ${(link.id === activeLink && pathname === '/' && !mobile) ? "active_item" : ''}
-                    ${(link.id === activeLink && pathname === '/' && mobile) ? 'active_item_mobile' : ''}
+                    ${(link.id === activeLink && pathname === '/Movies' && !mobile) ? "active_item" : ''}
+                    ${(link.id === activeLink && pathname === '/Movies' && mobile) ? 'active_item_mobile' : ''}
                     `}
                     key={link.id}
                     onClick={() => handleClick(link.api, link.id, link.name)}

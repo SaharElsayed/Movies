@@ -36,7 +36,7 @@ class SideMenue extends React.Component {
       sort_by: api ? 'popularity.desc' : sortingKey
     });
     setSorting({ sortingKey: api ? 'popularity.desc' : sortingKey });
-    history.push('/');
+    history.push('/Movies');
   };
 
   isMenuOpen = ({ isOpened }) => {

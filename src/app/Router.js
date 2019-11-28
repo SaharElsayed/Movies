@@ -9,7 +9,7 @@ export const Routes = (
   <Suspense fallback={<Loader />}>
     <Router history={history}>
       <Switch>
-        <LazyComponent.Home path="/" exact />
+        <LazyComponent.Home path="/Movies" exact />
         <LazyComponent.MovieSingle path="/movie/:id" />
         <LazyComponent.ArtistDetails path='/artist/:id' />
         <LazyComponent.Search path='/search/:keyword' />
