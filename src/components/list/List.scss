@@ -21,7 +21,7 @@
       @include boxShadow(none);
     }
 
-    &.active_item_mobile .btn{
+    &.active_item_mobile .button.list__btn{
       color: white;
       border: 1px solid white;
       @include boxShadow(none);
