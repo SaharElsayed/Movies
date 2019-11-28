@@ -14,16 +14,18 @@
   &__item {
     margin-bottom: 0.28rem;
 
-    &.active_item .btn {
+    &.active_item .button.list__btn {
       color: $primary;
-      border: 1px solid $secondary !important;
+      border: 1px solid $secondary;
       background-color: transparent;
-      @include boxShadow(none !important);
+      @include boxShadow(none);
     }
 
     &.active_item_mobile .btn{
       color: white;
       border: 1px solid white;
+      @include boxShadow(none);
+      background-color: transparent;
     }
   }
 
@@ -34,7 +36,7 @@
     color: $light;
     margin-bottom: 0.5rem;
     background-color: transparent;
-    @include boxShadow(none !important);
+    @include boxShadow(none);
     @include transitions(none);
     @include media-breakpoint-down(sm) {
       font-size: 11px;
