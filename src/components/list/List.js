@@ -31,8 +31,8 @@ class List extends React.Component {
                   <div
                     className={`
                     list__item 
-                    ${(link.id === activeLink && pathname === '/Movies' && !mobile) ? "active_item" : ''}
-                    ${(link.id === activeLink && pathname === '/Movies' && mobile) ? 'active_item_mobile' : ''}
+                    ${(link.id === activeLink && (pathname === '/Movies/' || pathname === '/Movies') && !mobile) ? "active_item" : ''}
+                    ${(link.id === activeLink && (pathname === '/Movies/' || pathname === '/Movies') && mobile) ? 'active_item_mobile' : ''}
                     `}
                     key={link.id}
                     onClick={() => handleClick(link.api, link.id, link.name)}

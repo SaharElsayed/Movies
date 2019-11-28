@@ -13,6 +13,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = { isMobile: null }
+    history.replace('/Movies/');
   }
 
   componentDidMount() {
