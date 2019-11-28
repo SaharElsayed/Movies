@@ -3,12 +3,22 @@ import { connect } from 'react-redux';
 import { animateScroll as scroll } from "react-scroll";
 import { Link } from 'react-router-dom';
 import { ImgBaseURL } from '../../utils/Constants';
+import * as actions from '../../redux/actions/index';
 import * as LazyComponent from './../../utils/LazyLoaded';
 import empty from './../../assets/svgs/empty.svg';
 import nothing from './../../assets/svgs/nothing.svg';
 import './MoviesList.scss';
 
 class MoviesList extends React.Component {
+  componentDidMount() {
+    const { fetchMoviesRequest, activeTab: { key, id }, sortingKey } = this.props;
+    fetchMoviesRequest(key, {
+      page: 1,
+      with_genres: key ? '' : id,
+      sort_by: sortingKey
+    });
+  }
+
   scrollToTop = () => {
     scroll.scrollToTop();
   };
@@ -68,8 +78,13 @@ class MoviesList extends React.Component {
   }
 }
 
+const mapDispatchToProps = {
+  fetchMoviesRequest: actions.fetchMoviesRequest,
+  fetchActiveTab: actions.fetchActiveTab
+};
+
 const mapStateToprops = state => {
   return { ...state };
 }
 
-export default connect(mapStateToprops)(MoviesList);
+export default connect(mapStateToprops, mapDispatchToProps)(MoviesList);
