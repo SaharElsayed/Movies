@@ -16,8 +16,9 @@
 
     &.active_item .btn {
       color: $primary;
-      border: 1px solid $secondary;
+      border: 1px solid $secondary !important;
       background-color: transparent;
+      @include boxShadow(none !important);
     }
 
     &.active_item_mobile .btn{
@@ -33,7 +34,7 @@
     color: $light;
     margin-bottom: 0.5rem;
     background-color: transparent;
-    @include boxShadow(none);
+    @include boxShadow(none !important);
     @include transitions(none);
     @include media-breakpoint-down(sm) {
       font-size: 11px;
