@@ -17,7 +17,7 @@ class NotFound extends React.Component {
             <h1 className="text-capitalize">{this.props.emptyTitle}</h1>
             <h2 className="text-capitalize">{this.props.statement}</h2>
           </div>
-          <img src={this.props.emptySrc} alt="No movies" className="mb-5" />
+          <img src={this.props.emptySrc} alt="Not Found" className="mb-5" />
           <Suspense fallback={<Loader />}>
             <LazyComponent.Button
               text='Home'

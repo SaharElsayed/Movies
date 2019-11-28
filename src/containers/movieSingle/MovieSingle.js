@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/index';
 import * as LazyComponent from './../../utils/LazyLoaded';
 import Loader from './../../components/loader/Loader';
+import empty from './../../assets/svgs/empty.svg';
 
 class MovieSingle extends React.Component {
   componentDidMount() {
@@ -41,7 +42,7 @@ class MovieSingle extends React.Component {
             recommended
             emptyTitle='Sorry!'
             emptyStatement='There are no recommended movies...'
-            emptySrc='/assets/svgs/empty.svg'
+            emptySrc={empty}
           />
         </Suspense>
       </React.Fragment>

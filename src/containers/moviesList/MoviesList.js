@@ -4,6 +4,8 @@ import { animateScroll as scroll } from "react-scroll";
 import { Link } from 'react-router-dom';
 import { ImgBaseURL } from '../../utils/Constants';
 import * as LazyComponent from './../../utils/LazyLoaded';
+import empty from './../../assets/svgs/empty.svg';
+import nothing from './../../assets/svgs/nothing.svg';
 import './MoviesList.scss';
 
 class MoviesList extends React.Component {
@@ -47,7 +49,7 @@ class MoviesList extends React.Component {
                     <LazyComponent.Card
                       title={item.title}
                       id={item.id}
-                      img={item.poster_path ? `${ImgBaseURL}${item.poster_path}` : `/assets/svgs/nothing.svg`}
+                      img={item.poster_path ? `${ImgBaseURL}${item.poster_path}` : nothing}
                       rating={item.vote_average}
                       size='lg'
                     />
@@ -57,7 +59,7 @@ class MoviesList extends React.Component {
             <LazyComponent.NotFound
               emptyTitle={emptyTitle}
               statement={emptyStatement ? emptyStatement : `there were no results for ${search}`}
-              emptySrc={emptySrc || '/assets/svgs/empty.svg'}
+              emptySrc={emptySrc || empty}
             />
         }
         <LazyComponent.Pagination page={page} />

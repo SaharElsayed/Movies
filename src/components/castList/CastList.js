@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import Loader from './../loader/Loader';
 import { ImgBaseURL } from '../../utils/Constants';
 import history from '../../app/history';
+import person from './../../assets/svgs/person.svg';
 import './CastList.scss';
 
 const CastList = ({ cast }) => {
@@ -33,7 +34,7 @@ const CastList = ({ cast }) => {
           return (
             <div className="cast__artist d-flex justify-content-center" key={artist.cast_id}>
               <img
-                src={artist.profile_path ? `${ImgBaseURL}${artist.profile_path}` : '/assets/svgs/person.svg'}
+                src={artist.profile_path ? `${ImgBaseURL}${artist.profile_path}` : person}
                 alt="logo"
                 onClick={() => history.push(`/artist/${artist.id}`)}
               />

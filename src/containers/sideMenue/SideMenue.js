@@ -26,23 +26,24 @@ class SideMenue extends React.Component {
   }
 
   handleClick = (api, id, name) => {
-    const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest, sort: { sortingKey } } = this.props;
-    this.setState({isOpened: false});    
+    const { setSearchKeyword, fetchActiveTab, fetchMoviesRequest, sort: { sortingKey }, setSorting } = this.props;
+    this.setState({ isOpened: false });
     setSearchKeyword({ search: "" });
     fetchActiveTab({ id: id === 0 ? 1 : id, title: name, key: api });
     fetchMoviesRequest(api, {
       page: 1,
       with_genres: api ? '' : id,
-      sort_by: sortingKey
+      sort_by: api ? 'popularity.desc' : sortingKey
     });
+    setSorting({ sortingKey: api ? 'popularity.desc' : sortingKey });
     history.push('/');
   };
 
-   isMenuOpen = ({ isOpened }) => {     
-    this.setState({isOpened: isOpened})
+  isMenuOpen = ({ isOpened }) => {
+    this.setState({ isOpened: isOpened })
   };
 
-  render() {    
+  render() {
     const { links, isOpened } = this.state;
     const { sideMenue, activeTab: { id }, isMobile } = this.props;
     return (
@@ -75,7 +76,8 @@ const mapDispatchToProps = {
   fetchSideListRequest: actions.fetchSideListRequest,
   fetchMoviesRequest: actions.fetchMoviesRequest,
   fetchActiveTab: actions.fetchActiveTab,
-  setSearchKeyword: actions.setSearchKeyword
+  setSearchKeyword: actions.setSearchKeyword,
+  setSorting: actions.setSorting
 };
 
 const mapStateToprops = state => {

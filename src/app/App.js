@@ -4,7 +4,7 @@ import { Routes } from './Router';
 import history from './history'
 import { Container, Row, Col } from 'react-bootstrap';
 import NavBar from './../containers/navBar/NavBar';
-import Search from './../components/search/Search';
+import SearchBar from './../components/searchBar/SearchBar';
 import { connect } from 'react-redux';
 import Loader from './../components/loader/Loader';
 import './App.scss';
@@ -14,7 +14,7 @@ class App extends React.Component {
     super();
     this.state = { isMobile: null }
   }
-  
+
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions);
   }
@@ -35,7 +35,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Container fluid>
-          {!isMobile && <Search />}
+          {!isMobile && <SearchBar />}
           <Row id="App">
             <NavBar isMobile={isMobile} />
             <Col id="page-wrap" xl='10' lg='12' className={`pt-md-60 pr-md-40 pb-md-60 pl-md-40 ${isMobile ? 'mt-md-40 mt-xs-100' : ''}`}>

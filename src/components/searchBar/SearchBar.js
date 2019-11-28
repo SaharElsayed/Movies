@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Form, InputGroup } from 'react-bootstrap';
 import history from '../../app/history';
-import './Search.scss';
+import './SearchBar.scss';
 
-class Search extends React.Component {
+class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.searchInput = React.createRef();
@@ -48,4 +48,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+export default SearchBar;

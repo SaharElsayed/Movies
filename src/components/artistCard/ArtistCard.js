@@ -4,8 +4,9 @@ import { faImdb } from '@fortawesome/free-brands-svg-icons';
 import history from '../../app/history';
 import { ImgBaseURL } from '../../utils/Constants';
 import Loader from './../loader/Loader';
-import './ArtistCard.scss';
 import * as LazyComponent from './../../utils/LazyLoaded';
+import nothing from './../../assets/svgs/person.svg';
+import './ArtistCard.scss';
 
 const ArtistCard = ({ artist }) => {
   return (
@@ -13,7 +14,7 @@ const ArtistCard = ({ artist }) => {
     <div className="artist-single row justify-content-center align-items-start">
       <div className="artist-single__img">
         <Suspense fallback={<Loader />}>
-          <LazyComponent.CardImage src={artist.profile_path ? `${ImgBaseURL}${artist.profile_path}` : `/assets/svgs/person.svg`} />
+          <LazyComponent.CardImage src={artist.profile_path ? `${ImgBaseURL}${artist.profile_path}` : nothing} />
         </Suspense>
       </div>
 

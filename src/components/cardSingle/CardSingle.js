@@ -6,6 +6,7 @@ import history from '../../app/history';
 import { ImgBaseURL } from '../../utils/Constants';
 import Loader from './../loader/Loader';
 import * as LazyComponent from './../../utils/LazyLoaded';
+import nothing from './../../assets/svgs/nothing.svg'
 import './CardSingle.scss';
 
 class CardSingle extends React.Component {
@@ -52,11 +53,11 @@ class CardSingle extends React.Component {
     }
   }
 
-    renderTrailer = (videos, isOpen, callBack) => {
+  renderTrailer = (videos, isOpen, callBack) => {
     if (videos.length === 0) {
       return;
     }
-    
+
     const { key } = videos.find(
       video => video.type === 'Trailer' && video.site === 'YouTube'
     );
@@ -85,7 +86,7 @@ class CardSingle extends React.Component {
       <div className="card-single row justify-content-between align-items-start">
         <div className="card-single__img">
           <Suspense fallback={<Loader />}>
-            <LazyComponent.CardImage src={movie.poster_path ? `${ImgBaseURL}${movie.poster_path}` : `/assets/svgs/nothing.svg`} />
+            <LazyComponent.CardImage src={movie.poster_path ? `${ImgBaseURL}${movie.poster_path}` : nothing} />
           </Suspense>
         </div>
 
